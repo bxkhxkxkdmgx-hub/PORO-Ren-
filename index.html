@@ -226,3 +226,72 @@ calculate();
 
 </body>
 </html>
+
+<!-- PORO LOAN USER LOGIN -->
+<div class="card" id="userSection">
+<h3>ইউজার অ্যাকাউন্ট</h3>
+
+<div id="registerBox">
+<h4>নতুন অ্যাকাউন্ট খুলুন</h4>
+<input id="regName" placeholder="আপনার নাম">
+<br><br>
+<input id="regPhone" placeholder="মোবাইল নম্বর">
+<br><br>
+<input id="regPass" type="password" placeholder="পাসওয়ার্ড">
+<button onclick="registerUser()">রেজিস্ট্রেশন করুন</button>
+</div>
+
+<div id="loginBox">
+<h4>লগইন করুন</h4>
+<input id="loginPhone" placeholder="মোবাইল নম্বর">
+<br><br>
+<input id="loginPass" type="password" placeholder="পাসওয়ার্ড">
+<button onclick="loginUser()">লগইন</button>
+</div>
+
+<div id="profileBox" style="display:none">
+<h3>স্বাগতম!</h3>
+<p id="profileName"></p>
+<button onclick="logoutUser()">লগআউট</button>
+</div>
+
+<p id="authMessage"></p>
+</div>
+
+<script>
+function registerUser(){
+ const name=document.getElementById("regName").value.trim();
+ const phone=document.getElementById("regPhone").value.trim();
+ const pass=document.getElementById("regPass").value;
+
+ if(!name || !phone || !pass){
+  alert("সব তথ্য পূরণ করুন");
+  return;
+ }
+
+ if(!/^01[3-9][0-9]{8}$/.test(phone)){
+  alert("সঠিক বাংলাদেশি মোবাইল নম্বর দিন");
+  return;
+ }
+
+ if(pass.length<8){
+  alert("কমপক্ষে ৮ অক্ষরের পাসওয়ার্ড দিন");
+  return;
+ }
+
+ document.getElementById("authMessage").innerText=
+ "ডেমো রেজিস্ট্রেশন সম্পন্ন হয়নি: নিরাপদ সার্ভার সংযুক্ত করতে হবে।";
+}
+
+function loginUser(){
+ document.getElementById("authMessage").innerText=
+ "লগইন চালু করতে নিরাপদ সার্ভার ও Authentication যুক্ত করতে হবে।";
+}
+
+function logoutUser(){
+ document.getElementById("profileBox").style.display="none";
+}
+</script>
+<!-- END USER LOGIN -->
+</body>
+</html>
