@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PORO LOAN</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#f3f6fa;
+ color:#172033;
+}
+header{
+ background:#075c42;
+ color:white;
+ padding:22px 16px;
+ text-align:center;
+}
+header h1{margin:0;font-size:27px}
+header p{margin-bottom:0}
+.container{
+ max-width:550px;
+ margin:20px auto;
+ padding:15px;
+}
+.card{
+ background:white;
+ padding:20px;
+ border-radius:15px;
+ margin-bottom:17px;
+ box-shadow:0 3px 14px #00000010;
+}
+.hero{
+ background:#087653;
+ color:white;
+ text-align:center;
+ padding:25px 15px;
+ border-radius:15px;
+}
+.hero h2{font-size:26px}
+.amount{
+ font-size:32px;
+ font-weight:bold;
+}
+label{
+ display:block;
+ margin:15px 0 7px;
+ font-weight:bold;
+}
+input,select{
+ width:100%;
+ padding:13px;
+ border:1px solid #ccd3dc;
+ border-radius:8px;
+ font-size:16px;
+}
+button{
+ width:100%;
+ padding:14px;
+ border:0;
+ border-radius:9px;
+ background:#087653;
+ color:white;
+ font-size:17px;
+ font-weight:bold;
+ margin-top:18px;
+}
+.notice{
+ background:#fff4dc;
+ color:#79520a;
+ padding:13px;
+ border-radius:9px;
+ line-height:1.7;
+}
+.result{
+ background:#e8f6ef;
+ padding:15px;
+ border-radius:10px;
+ margin-top:15px;
+ line-height:2;
+}
+footer{
+ text-align:center;
+ padding:20px;
+ color:#777;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>PORO LOAN</h1>
+<p>আপনার আর্থিক সহযোগিতার ঠিকানা</p>
+</header>
+
+<div class="container">
+
+<div class="hero">
+<h2>সহজ লোন আবেদন</h2>
+<p>আপনার প্রয়োজন অনুযায়ী লোনের আবেদন করুন</p>
+<div class="amount">৳ ৩০,০০০+</div>
+<p>সর্বনিম্ন লোন ৩০ হাজার টাকা</p>
+</div>
+
+<div class="card">
+<h3>লোনের নিয়মাবলি</h3>
+<p>সর্বনিম্ন লোন: ৳৩০,০০০</p>
+<p>জামানতের প্রস্তাবিত পরিমাণ: ৳৩,০০০</p>
+<div class="notice">
+জামানত দেওয়ার আগে লিখিত চুক্তি, ফেরতের নিয়ম এবং প্রতিষ্ঠানের বৈধতা যাচাই করুন।
+লোন অনুমোদনের নিশ্চয়তা ছাড়া কোনো টাকা জমা দেবেন না।
+</div>
+</div>
+
+<div class="card">
+<h3>মাসিক কিস্তির হিসাব</h3>
+
+<label>লোনের পরিমাণ (টাকা)</label>
+<input type="number" id="amount"
+min="30000" value="30000">
+
+<label>লোনের মেয়াদ</label>
+<select id="months">
+<option value="6">৬ মাস</option>
+<option value="12">১২ মাস</option>
+<option value="18">১৮ মাস</option>
+<option value="24">২৪ মাস</option>
+</select>
+
+<button onclick="calculate()">কিস্তি হিসাব করুন</button>
+
+<div class="result" id="result">
+এখানে কিস্তির হিসাব দেখাবে।
+</div>
+<p style="font-size:12px;color:#777">
+এটি শুধু মূল টাকার হিসাব। সুদ, ফি ও অন্যান্য চার্জ এতে অন্তর্ভুক্ত নয়।
+</p>
+</div>
+
+<div class="card">
+<h3>লোন আবেদন ফর্ম</h3>
+
+<form id="loanForm">
+
+<label>আপনার নাম</label>
+<input type="text" id="name" required>
+
+<label>মোবাইল নম্বর</label>
+<input type="tel" id="phone"
+pattern="01[3-9][0-9]{8}"
+placeholder="01XXXXXXXXX" required>
+
+<label>লোনের পরিমাণ</label>
+<input type="number" id="loanAmount"
+min="30000" placeholder="কমপক্ষে ৩০০০০" required>
+
+<label>লোনের মেয়াদ</label>
+<select id="duration">
+<option value="6">৬ মাস</option>
+<option value="12">১২ মাস</option>
+<option value="18">১৮ মাস</option>
+<option value="24">২৪ মাস</option>
+</select>
+
+<label>
+<input type="checkbox" id="agree"
+style="width:auto" required>
+আমি শর্তাবলি পড়েছি এবং সম্মত।
+</label>
+
+<button type="submit">আবেদন জমা দিন</button>
+</form>
+
+<div id="message"></div>
+</div>
+
+</div>
+
+<footer>
+<p>PORO LOAN © 2026</p>
+<p>গ্রাহকের তথ্যের নিরাপত্তা আমাদের অগ্রাধিকার</p>
+</footer>
+
+<script>
+function calculate(){
+ let amount=Number(document.getElementById("amount").value);
+ let months=Number(document.getElementById("months").value);
+ let result=document.getElementById("result");
+
+ if(amount<30000 || !Number.isFinite(amount)){
+  result.innerHTML="সর্বনিম্ন লোন ৩০,০০০ টাকা।";
+  return;
+ }
+
+ let installment=amount/months;
+
+ result.innerHTML=
+ "লোনের পরিমাণ: ৳"+amount.toLocaleString("en-IN")+
+ "<br>মেয়াদ: "+months+" মাস"+
+ "<br>আনুমানিক মাসিক মূল কিস্তি: ৳"+
+ installment.toLocaleString("en-IN",{maximumFractionDigits:2});
+}
+
+document.getElementById("loanForm")
+.addEventListener("submit",function(e){
+ e.preventDefault();
+
+ let amount=Number(document.getElementById("loanAmount").value);
+
+ if(amount<30000){
+  alert("সর্বনিম্ন লোন ৩০,০০০ টাকা");
+  return;
+ }
+
+ document.getElementById("message").innerHTML=
+ "<div class='notice'>এটি একটি ডেমো ফর্ম। আবেদনটি এখনো সার্ভারে জমা হয়নি। প্রকৃত আবেদন জমা দেওয়ার ব্যবস্থা এখনো তৈরি করা হয়নি।</div>";
+
+});
+calculate();
+</script>
+
+</body>
+</html>
