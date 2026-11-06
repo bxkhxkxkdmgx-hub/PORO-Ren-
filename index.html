@@ -1,277 +1,595 @@
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PORO LOAN</title>
+<title>PORO Ren</title>
 
 <style>
+:root{
+  --navy:#102a56;
+  --blue:#2468df;
+  --orange:#ff9b35;
+  --ink:#17243b;
+  --muted:#6d7890;
+  --line:#e5eaf2;
+}
 *{box-sizing:border-box}
 body{
- margin:0;
- font-family:Arial,sans-serif;
- background:#f3f6fa;
- color:#172033;
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f4f7fc;
+  color:var(--ink);
 }
-header{
- background:#075c42;
- color:white;
- padding:22px 16px;
- text-align:center;
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+
+.topbar{
+  background:linear-gradient(120deg,var(--navy),var(--blue));
+  color:white;padding:16px 5%;
+  display:flex;align-items:center;
+  justify-content:space-between;gap:12px;
 }
-header h1{margin:0;font-size:27px}
-header p{margin-bottom:0}
-.container{
- max-width:550px;
- margin:20px auto;
- padding:15px;
+.brand{font-size:25px;font-weight:bold}
+.brand span{color:#ffb45f}
+.btn{
+  border:0;border-radius:11px;
+  padding:12px 17px;font-weight:bold;
 }
-.card{
- background:white;
- padding:20px;
- border-radius:15px;
- margin-bottom:17px;
- box-shadow:0 3px 14px #00000010;
-}
+.btn-light{background:white;color:var(--navy)}
+.btn-orange{background:var(--orange);color:#241500}
+.btn-blue{background:var(--blue);color:white}
+.btn-outline{background:white;border:1px solid #cbd6e8;color:var(--navy)}
+.full{width:100%;margin-top:15px}
+
 .hero{
- background:#087653;
- color:white;
- text-align:center;
- padding:25px 15px;
- border-radius:15px;
+  background:linear-gradient(120deg,#102a56,#286fe9);
+  color:white;padding:50px 5%;
 }
-.hero h2{font-size:26px}
-.amount{
- font-size:32px;
- font-weight:bold;
+.hero-inner{
+  max-width:1100px;margin:auto;
+  display:grid;grid-template-columns:1.2fr .8fr;
+  gap:30px;align-items:center;
 }
-label{
- display:block;
- margin:15px 0 7px;
- font-weight:bold;
+.hero h1{font-size:42px}
+.hero p{line-height:1.8;color:#dce7ff}
+.hero-card{
+  background:white;color:var(--ink);
+  padding:24px;border-radius:22px;
 }
-input,select{
- width:100%;
- padding:13px;
- border:1px solid #ccd3dc;
- border-radius:8px;
- font-size:16px;
+.hero-card strong{font-size:30px;color:var(--blue)}
+.container{max-width:1100px;margin:28px auto;padding:0 16px}
+.features{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:15px;margin-top:-20px;
 }
-button{
- width:100%;
- padding:14px;
- border:0;
- border-radius:9px;
- background:#087653;
- color:white;
- font-size:17px;
- font-weight:bold;
- margin-top:18px;
+.feature,.panel,.stat{
+  background:white;border:1px solid var(--line);
+  border-radius:17px;padding:20px;
+  box-shadow:0 7px 22px #142d5010;
+}
+.feature h3{margin:10px 0}
+.muted{color:var(--muted);line-height:1.65;font-size:14px}
+
+.auth-wrap{max-width:470px;margin:35px auto;padding:0 16px}
+.auth-card{
+  background:white;border-radius:20px;
+  padding:25px;box-shadow:0 16px 45px #16315b20;
+}
+.tabs{
+  display:grid;grid-template-columns:1fr 1fr;
+  background:#eef3fc;border-radius:12px;
+  padding:5px;margin:18px 0;
+}
+.tab{
+  border:0;padding:11px;border-radius:9px;
+  background:transparent;color:var(--muted);
+}
+.tab.active{background:white;color:var(--blue)}
+label{display:block;font-size:14px;font-weight:bold;margin:13px 0 7px}
+input,select,textarea{
+  width:100%;padding:13px;
+  border:1px solid #d9e1ee;border-radius:10px;
+  background:white;
 }
 .notice{
- background:#fff4dc;
- color:#79520a;
- padding:13px;
- border-radius:9px;
- line-height:1.7;
+  padding:13px 15px;border-radius:12px;
+  background:#fff7e9;border:1px solid #ffe0ad;
+  color:#79501b;font-size:13px;line-height:1.65;
 }
-.result{
- background:#e8f6ef;
- padding:15px;
- border-radius:10px;
- margin-top:15px;
- line-height:2;
+.dash-head{
+  background:linear-gradient(120deg,var(--navy),var(--blue));
+  color:white;padding:24px 5%;
+  border-radius:0 0 24px 24px;
 }
-footer{
- text-align:center;
- padding:20px;
- color:#777;
+.dash-head-inner{
+  max-width:1100px;margin:auto;
+  display:flex;justify-content:space-between;
+  align-items:center;gap:15px;
+}
+.dash-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:14px;margin:20px 0;
+}
+.stat strong{
+  display:block;font-size:25px;
+  margin-top:8px;color:var(--navy);
+}
+.two-col{
+  display:grid;grid-template-columns:1.1fr .9fr;gap:16px;
+}
+.status{
+  display:inline-block;padding:6px 10px;
+  border-radius:20px;background:#fff4df;
+  color:#9a6200;font-size:12px;
+}
+.history-item{padding:13px 0;border-bottom:1px solid var(--line)}
+.small{font-size:12px;color:var(--muted);line-height:1.6}
+footer{text-align:center;padding:30px;color:var(--muted)}
+
+@media(max-width:760px){
+  .hero-inner,.two-col{grid-template-columns:1fr}
+  .features{grid-template-columns:1fr;margin-top:18px}
+  .dash-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:420px){
+  .dash-grid{grid-template-columns:1fr}
+  .brand{font-size:22px}
 }
 </style>
 </head>
 
 <body>
 
-<div style="display:flex;gap:10px;padding:12px;background:white;">
-<button onclick="showRegister();document.getElementById('userSection').scrollIntoView({behavior:'smooth'})">
-রেজিস্ট্রেশন
-</button>
-<button onclick="showLogin();document.getElementById('userSection').scrollIntoView({behavior:'smooth'})">
-লগইন
-</button>
-</div>
-
-<header>
-<h1>PORO LOAN</h1>
-<p>আপনার আর্থিক সহযোগিতার ঠিকানা</p>
+<header class="topbar" id="publicHeader">
+  <div class="brand">PORO <span>Ren</span></div>
+  <div>
+    <button class="btn btn-light" onclick="showAuth('login')">লগইন</button>
+    <button class="btn btn-orange" onclick="showAuth('register')">রেজিস্ট্রেশন</button>
+  </div>
 </header>
 
-<div class="container">
+<main id="homePage">
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <h1>আপনার প্রয়োজনের পাশে<br>PORO Ren</h1>
+        <p>সহজে ঋণের আবেদন করার একটি ডেমো ওয়েবসাইট।</p>
+        <button class="btn btn-orange" onclick="showAuth('register')">
+          এখনই অ্যাকাউন্ট খুলুন
+        </button>
+      </div>
+      <div class="hero-card">
+        <p>ন্যূনতম ঋণের পরিমাণ</p>
+        <strong>৳৩০,০০০</strong>
+        <hr>
+        <p>প্রস্তাবিত জামানত</p>
+        <strong style="color:#f08b25">৳৩,০০০</strong>
+        <p class="small">এটি শুধু ডেমো তথ্য। কোনো টাকা জমা দেবেন না।</p>
+      </div>
+    </div>
+  </section>
 
-<div class="hero">
-<h2>সহজ লোন আবেদন</h2>
-<p>আপনার প্রয়োজন অনুযায়ী লোনের আবেদন করুন</p>
-<div class="amount">৳ ৩০,০০০+</div>
-<p>সর্বনিম্ন লোন ৩০ হাজার টাকা</p>
-</div>
+  <div class="container">
+    <section class="features">
+      <div class="feature">
+        <h3>📝 সহজ আবেদন</h3>
+        <p class="muted">অনলাইনে আবেদন ফর্ম পূরণ করুন।</p>
+      </div>
+      <div class="feature">
+        <h3>📊 আবেদনের অবস্থা</h3>
+        <p class="muted">ড্যাশবোর্ডে আবেদনের অবস্থা দেখুন।</p>
+      </div>
+      <div class="feature">
+        <h3>🔐 ব্যক্তিগত ড্যাশবোর্ড</h3>
+        <p class="muted">নিজের প্রোফাইল ও আবেদন দেখুন।</p>
+      </div>
+    </section>
 
-<div class="card">
-<h3>লোনের নিয়মাবলি</h3>
-<p>সর্বনিম্ন লোন: ৳৩০,০০০</p>
-<p>জামানতের প্রস্তাবিত পরিমাণ: ৳৩,০০০</p>
-<div class="notice">
-জামানত দেওয়ার আগে লিখিত চুক্তি, ফেরতের নিয়ম এবং প্রতিষ্ঠানের বৈধতা যাচাই করুন।
-লোন অনুমোদনের নিশ্চয়তা ছাড়া কোনো টাকা জমা দেবেন না।
-</div>
-</div>
+    <section class="panel" style="margin-top:20px">
+      <h2>গুরুত্বপূর্ণ তথ্য</h2>
+      <p class="muted">
+        এটি শুধুমাত্র ফ্রন্টএন্ড ডেমো। এখানে প্রকৃত ঋণ অনুমোদন,
+        অর্থ লেনদেন বা জামানত সংগ্রহ করা হয় না।
+        বাস্তবে চালুর আগে বৈধ অনুমোদন ও লিখিত শর্ত নিশ্চিত করুন।
+      </p>
+    </section>
+  </div>
+</main>
 
-<div class="card">
-<h3>মাসিক কিস্তির হিসাব</h3>
+<section class="auth-wrap hidden" id="authPage">
+  <div class="auth-card">
+    <div class="brand" style="text-align:center;color:#102a56">
+      PORO <span>Ren</span>
+    </div>
+    <h2 id="authTitle" style="text-align:center">লগইন করুন</h2>
 
-<label>লোনের পরিমাণ (টাকা)</label>
-<input type="number" id="amount"
-min="30000" value="30000">
+    <div class="tabs">
+      <button class="tab active" id="loginTab" onclick="showAuth('login')">লগইন</button>
+      <button class="tab" id="registerTab" onclick="showAuth('register')">রেজিস্ট্রেশন</button>
+    </div>
 
-<label>লোনের মেয়াদ</label>
-<select id="months">
-<option value="6">৬ মাস</option>
-<option value="12">১২ মাস</option>
-<option value="18">১৮ মাস</option>
-<option value="24">২৪ মাস</option>
-</select>
+    <form id="loginForm">
+      <label>মোবাইল নম্বর বা ইমেইল</label>
+      <input id="loginId" required>
+      <label>পাসওয়ার্ড</label>
+      <input id="loginPass" type="password" required>
+      <button class="btn btn-blue full">লগইন করুন</button>
+    </form>
 
-<button onclick="calculate()">কিস্তি হিসাব করুন</button>
+    <form id="registerForm" class="hidden">
+      <label>আপনার নাম</label>
+      <input id="regName" required>
+      <label>মোবাইল নম্বর বা ইমেইল</label>
+      <input id="regId" required>
+      <label>পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)</label>
+      <input id="regPass" type="password" minlength="6" required>
+      <button class="btn btn-blue full">অ্যাকাউন্ট তৈরি করুন</button>
+    </form>
 
-<div class="result" id="result">
-এখানে কিস্তির হিসাব দেখাবে।
-</div>
-<p style="font-size:12px;color:#777">
-এটি শুধু মূল টাকার হিসাব। সুদ, ফি ও অন্যান্য চার্জ এতে অন্তর্ভুক্ত নয়।
-</p>
-</div>
+    <p class="small">
+      এটি ডেমো লগইন। বাস্তব ব্যবহারকারীর তথ্য এখানে সংরক্ষণ করবেন না।
+    </p>
+    <button class="btn btn-outline full" onclick="backHome()">হোম পেজে ফিরে যান</button>
+    <div id="authMessage" class="small"></div>
+  </div>
+</section>
 
-<div class="card">
-<h3>লোন আবেদন ফর্ম</h3>
+<section id="dashboardPage" class="hidden">
+  <div class="dash-head">
+    <div class="dash-head-inner">
+      <div>
+        <div class="brand">PORO <span>Ren</span></div>
+        <div id="welcomeText">স্বাগতম</div>
+      </div>
+      <button class="btn btn-light" onclick="logout()">লগআউট</button>
+    </div>
+  </div>
 
-<form id="loanForm">
+  <div class="container">
+    <div class="dash-grid">
+      <div class="stat"><small>ন্যূনতম ঋণ</small><strong>৳৩০,০০০</strong></div>
+      <div class="stat"><small>প্রস্তাবিত জামানত</small><strong>৳৩,০০০</strong></div>
+      <div class="stat"><small>আমার আবেদন</small><strong id="applicationCount">০</strong></div>
+    </div>
 
-<label>আপনার নাম</label>
-<input type="text" id="name" required>
+    <div class="two-col">
+      <div class="panel">
+        <h2>ঋণের আবেদন</h2>
+        <div class="notice">
+          এটি ডেমো ফর্ম। কাউকে জামানতের টাকা পাঠাবেন না।
+        </div>
 
-<label>মোবাইল নম্বর</label>
-<input type="tel" id="phone"
-pattern="01[3-9][0-9]{8}"
-placeholder="01XXXXXXXXX" required>
+        <form id="loanForm">
+          <label>আবেদনের পরিমাণ (৳)</label>
+          <input id="loanAmount" type="number" min="30000"
+                 step="1000" value="30000" required>
 
-<label>লোনের পরিমাণ</label>
-<input type="number" id="loanAmount"
-min="30000" placeholder="কমপক্ষে ৩০০০০" required>
+          <label>পেশা</label>
+          <select id="occupation" required>
+            <option value="">পেশা নির্বাচন করুন</option>
+            <option>চাকরি</option>
+            <option>ব্যবসা</option>
+            <option>কৃষি</option>
+            <option>অন্যান্য</option>
+          </select>
 
-<label>লোনের মেয়াদ</label>
-<select id="duration">
-<option value="6">৬ মাস</option>
-<option value="12">১২ মাস</option>
-<option value="18">১৮ মাস</option>
-<option value="24">২৪ মাস</option>
-</select>
+          <label>মাসিক আয় (৳)</label>
+          <input id="income" type="number" min="0" required>
 
-<label>
-<input type="checkbox" id="agree"
-style="width:auto" required>
-আমি শর্তাবলি পড়েছি এবং সম্মত।
-</label>
+          <label>ঋণ নেওয়ার কারণ</label>
+          <textarea id="reason" rows="3" required></textarea>
 
-<button type="submit">আবেদন জমা দিন</button>
-</form>
+          <h3>প্রয়োজনীয় ডকুমেন্ট</h3>
+          <p class="small">ডেমোতে আসল NID বা ব্যক্তিগত কাগজ আপলোড করবেন না।</p>
 
-<div id="message"></div>
-</div>
+          <label>NID কার্ডের সামনের ছবি</label>
+          <input type="file" id="nidFront" accept="image/*,.pdf" required>
 
-</div>
+          <label>NID কার্ডের পেছনের ছবি</label>
+          <input type="file" id="nidBack" accept="image/*,.pdf" required>
 
-<footer>
-<p>PORO LOAN © 2026</p>
-<p>গ্রাহকের তথ্যের নিরাপত্তা আমাদের অগ্রাধিকার</p>
-</footer>
+          <label>আবেদনকারীর ছবি</label>
+          <input type="file" id="applicantPhoto" accept="image/*" required>
+
+          <label>ঠিকানার প্রমাণপত্র</label>
+          <input type="file" id="addressProof" accept="image/*,.pdf" required>
+
+          <div id="businessDocWrap" class="hidden">
+            <label>ব্যবসায়িক ট্রেড লাইসেন্স</label>
+            <input type="file" id="tradeLicense" accept="image/*,.pdf">
+          </div>
+
+          <div id="incomeDocWrap">
+            <label>আয়ের প্রমাণপত্র</label>
+            <input type="file" id="incomeProof" accept="image/*,.pdf">
+          </div>
+
+          <h3>নমিনির তথ্য</h3>
+          <label>নমিনির সম্পূর্ণ নাম</label>
+          <input id="nomineeName" required>
+
+          <label>নমিনির মোবাইল নম্বর</label>
+          <input id="nomineePhone" type="tel" required>
+
+          <button class="btn btn-blue full" type="submit">
+            ডেমো আবেদন জমা দিন
+          </button>
+        </form>
+      </div>
+
+      <div class="panel">
+        <h2>আমার প্রোফাইল</h2>
+        <p><b>নাম:</b> <span id="profileName">—</span></p>
+        <p><b>যোগাযোগ:</b> <span id="profileId">—</span></p>
+        <hr>
+        <h2>আবেদনের ইতিহাস</h2>
+        <div id="historyList" class="muted">এখনো কোনো আবেদন নেই।</div>
+      </div>
+    </div>
+
+    <section class="panel" style="margin-top:18px">
+      <h2>জামানত ও পেমেন্ট</h2>
+      <div class="notice">
+        এটি ডেমো পেমেন্ট বিভাগ। অনুমোদন, লিখিত চুক্তি,
+        জামানত ফেরতের নিয়ম ও বৈধ মার্চেন্ট পেমেন্ট ব্যবস্থা
+        নিশ্চিত না হওয়া পর্যন্ত টাকা পাঠাবেন না।
+      </div>
+
+      <p><b>প্রস্তাবিত জামানত: ৳৩,০০০</b></p>
+
+      <label>বিকাশ মার্চেন্ট নম্বর</label>
+      <button type="button" class="btn btn-outline full"
+              onclick="copyPaymentNumber('bkash')">
+        <span id="bkashNumber">নম্বর সেট করা হয়নি</span> — কপি
+      </button>
+
+      <label>নগদ মার্চেন্ট নম্বর</label>
+      <button type="button" class="btn btn-outline full"
+              onclick="copyPaymentNumber('nagad')">
+        <span id="nagadNumber">নম্বর সেট করা হয়নি</span> — কপি
+      </button>
+
+      <form id="paymentForm">
+        <label>পেমেন্ট মাধ্যম</label>
+        <select id="paymentMethod" required>
+          <option value="">নির্বাচন করুন</option>
+          <option value="বিকাশ">বিকাশ</option>
+          <option value="নগদ">নগদ</option>
+        </select>
+
+        <label>ট্রানজ্যাকশন আইডি (TrxID)</label>
+        <input id="transactionId" required
+               placeholder="আপনার TrxID লিখুন">
+
+        <button class="btn btn-blue full" type="submit" disabled>
+          TrxID জমা দিন
+        </button>
+        <p class="small">ডেমোতে পেমেন্ট যাচাই করা হয় না।</p>
+      </form>
+    </section>
+  </div>
+</section>
+
+<footer>© 2026 PORO Ren — Loan Service Demo</footer>
 
 <script>
-function calculate(){
- let amount=Number(document.getElementById("amount").value);
- let months=Number(document.getElementById("months").value);
- let result=document.getElementById("result");
+const $ = id => document.getElementById(id);
+let currentUser = null;
 
- if(amount<30000 || !Number.isFinite(amount)){
-  result.innerHTML="সর্বনিম্ন লোন ৩০,০০০ টাকা।";
-  return;
- }
+const readUsers = () =>
+  JSON.parse(localStorage.getItem('poroRenUsers') || '[]');
 
- let installment=amount/months;
+const saveUsers = users =>
+  localStorage.setItem('poroRenUsers', JSON.stringify(users));
 
- result.innerHTML=
- "লোনের পরিমাণ: ৳"+amount.toLocaleString("en-IN")+
- "<br>মেয়াদ: "+months+" মাস"+
- "<br>আনুমানিক মাসিক মূল কিস্তি: ৳"+
- installment.toLocaleString("en-IN",{maximumFractionDigits:2});
+const readApps = () =>
+  JSON.parse(localStorage.getItem('poroRenApps') || '{}');
+
+function showOnly(page){
+  ['homePage','authPage','dashboardPage'].forEach(id =>
+    $(id).classList.add('hidden')
+  );
+  $('publicHeader').classList.toggle(
+    'hidden', page === 'dashboardPage'
+  );
+  $(page).classList.remove('hidden');
 }
 
-document.getElementById("loanForm")
-.addEventListener("submit",function(e){
- e.preventDefault();
+function showAuth(mode){
+  showOnly('authPage');
+  $('authMessage').textContent = '';
 
- let amount=Number(document.getElementById("loanAmount").value);
+  const login = mode === 'login';
+  $('loginForm').classList.toggle('hidden', !login);
+  $('registerForm').classList.toggle('hidden', login);
+  $('loginTab').classList.toggle('active', login);
+  $('registerTab').classList.toggle('active', !login);
 
- if(amount<30000){
-  alert("সর্বনিম্ন লোন ৩০,০০০ টাকা");
-  return;
- }
+  $('authTitle').textContent =
+    login ? 'অ্যাকাউন্টে লগইন করুন' : 'নতুন অ্যাকাউন্ট তৈরি করুন';
+}
 
- document.getElementById("message").innerHTML=
- "<div class='notice'>এটি একটি ডেমো ফর্ম। আবেদনটি এখনো সার্ভারে জমা হয়নি। প্রকৃত আবেদন জমা দেওয়ার ব্যবস্থা এখনো তৈরি করা হয়নি।</div>";
+function backHome(){
+  showOnly('homePage');
+}
 
+function renderDashboard(){
+  if(!currentUser) return;
+
+  showOnly('dashboardPage');
+  $('welcomeText').textContent = 'স্বাগতম, ' + currentUser.name;
+  $('profileName').textContent = currentUser.name;
+  $('profileId').textContent = currentUser.id;
+
+  const apps = readApps()[currentUser.id] || [];
+  $('applicationCount').textContent =
+    apps.length.toLocaleString('bn-BD');
+
+  $('historyList').textContent =
+    apps.length ? 'আপনার ডেমো আবেদন জমা হয়েছে।' : 'এখনো কোনো আবেদন নেই।';
+}
+
+$('registerForm').addEventListener('submit', e=>{
+  e.preventDefault();
+
+  const name = $('regName').value.trim();
+  const id = $('regId').value.trim().toLowerCase();
+  const pass = $('regPass').value;
+
+  const users = readUsers();
+
+  if(users.some(u=>u.id===id)){
+    $('authMessage').textContent =
+      'এই মোবাইল / ইমেইল দিয়ে আগে অ্যাকাউন্ট খোলা হয়েছে।';
+    return;
+  }
+
+  users.push({name,id,pass});
+  saveUsers(users);
+
+  $('registerForm').reset();
+  showAuth('login');
+  $('loginId').value = id;
+  $('authMessage').textContent =
+    'রেজিস্ট্রেশন সম্পন্ন হয়েছে। এখন লগইন করুন।';
 });
-calculate();
-</script>
 
+$('loginForm').addEventListener('submit', e=>{
+  e.preventDefault();
 
-<div class="card" id="userSection">
-<h3>আপনার অ্যাকাউন্ট</h3>
+  const id = $('loginId').value.trim().toLowerCase();
+  const pass = $('loginPass').value;
 
-<div style="display:flex;gap:10px">
-<button onclick="showRegister()">রেজিস্ট্রেশন</button>
-<button onclick="showLogin()">লগইন</button>
-</div>
+  const user = readUsers().find(u=>u.id===id && u.pass===pass);
 
-<div id="registerBox">
-<h3>নতুন অ্যাকাউন্ট খুলুন</h3>
-<input id="regName" placeholder="আপনার নাম">
-<br><br>
-<input id="regPhone" placeholder="মোবাইল নম্বর">
-<br><br>
-<input id="regPass" type="password" placeholder="পাসওয়ার্ড">
-</div>
+  if(!user){
+    $('authMessage').textContent =
+      'তথ্য সঠিক নয়। আবার চেষ্টা করুন।';
+    return;
+  }
 
-<div id="loginBox" style="display:none">
-<h3>লগইন করুন</h3>
-<input id="loginPhone" placeholder="মোবাইল নম্বর">
-<br><br>
-<input id="loginPass" type="password" placeholder="পাসওয়ার্ড">
-</div>
+  currentUser = {name:user.name,id:user.id};
+  renderDashboard();
+});
 
-</div>
+$('occupation').addEventListener('change', ()=>{
+  const isBusiness = $('occupation').value === 'ব্যবসা';
 
-<script>
-function showRegister(){
- document.getElementById("registerBox").style.display="block";
- document.getElementById("loginBox").style.display="none";
+  $('businessDocWrap').classList.toggle('hidden', !isBusiness);
+  $('incomeDocWrap').classList.toggle('hidden', isBusiness);
+
+  $('tradeLicense').required = isBusiness;
+  $('incomeProof').required =
+    !isBusiness && $('occupation').value !== '';
+});
+
+$('loanForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  if(!currentUser) return;
+
+  const requiredFiles = [
+    'nidFront','nidBack','applicantPhoto','addressProof'
+  ];
+
+  if($('occupation').value === 'ব্যবসা'){
+    requiredFiles.push('tradeLicense');
+  }else{
+    requiredFiles.push('incomeProof');
+  }
+
+  for(const id of requiredFiles){
+    const file = $(id).files[0];
+
+    if(!file){
+      alert('সব প্রয়োজনীয় ডকুমেন্ট নির্বাচন করুন।');
+      $(id).focus();
+      return;
+    }
+
+    if(file.size > 5*1024*1024){
+      alert('প্রতিটি ফাইল সর্বোচ্চ ৫ MB হতে পারবে।');
+      $(id).focus();
+      return;
+    }
+  }
+
+  const amount = Number($('loanAmount').value);
+
+  if(amount < 30000){
+    alert('ন্যূনতম ঋণের পরিমাণ ৳৩০,০০০।');
+    return;
+  }
+
+  const all = readApps();
+  const apps = all[currentUser.id] || [];
+
+  if(apps.some(a=>a.status==='pending')){
+    alert('আপনার একটি আবেদন এখনো ডেমো পর্যালোচনায় আছে।');
+    return;
+  }
+
+  apps.push({
+    amount,
+    occupation:$('occupation').value,
+    income:$('income').value,
+    reason:$('reason').value,
+    date:new Date().toLocaleDateString('bn-BD'),
+    status:'pending'
+  });
+
+  all[currentUser.id] = apps;
+  localStorage.setItem('poroRenApps',JSON.stringify(all));
+
+  $('loanForm').reset();
+  $('loanAmount').value = 30000;
+
+  alert('ডেমো আবেদন সংরক্ষিত হয়েছে। ডকুমেন্ট সার্ভারে আপলোড হয়নি।');
+  renderDashboard();
+});
+
+// নিজের অনুমোদিত মার্চেন্ট নম্বর থাকলে পরে এখানে বসাতে হবে।
+const PAYMENT_NUMBERS = {
+  bkash:"",
+  nagad:""
+};
+
+function copyPaymentNumber(method){
+  const number = PAYMENT_NUMBERS[method];
+
+  if(!number){
+    alert('পেমেন্ট নম্বর এখনো সেট করা হয়নি।');
+    return;
+  }
+
+  if(navigator.clipboard && window.isSecureContext){
+    navigator.clipboard.writeText(number)
+      .then(()=>alert('নম্বর কপি হয়েছে: '+number))
+      .catch(()=>alert('নম্বরটি হাতে কপি করুন: '+number));
+  }else{
+    alert('নম্বরটি কপি করুন: '+number);
+  }
 }
 
-function showLogin(){
- document.getElementById("registerBox").style.display="none";
- document.getElementById("loginBox").style.display="block";
+$('bkashNumber').textContent =
+  PAYMENT_NUMBERS.bkash || 'নম্বর সেট করা হয়নি';
+
+$('nagadNumber').textContent =
+  PAYMENT_NUMBERS.nagad || 'নম্বর সেট করা হয়নি';
+
+$('paymentForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  alert('ডেমোতে TrxID জমা বা পেমেন্ট যাচাই হয় না।');
+});
+
+function logout(){
+  currentUser = null;
+  showOnly('homePage');
 }
+
+showOnly('homePage');
 </script>
- 
+
 </body>
 </html>
-
