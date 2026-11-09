@@ -3,247 +3,344 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PORO Ren Dashboard</title>
-
 <style>
 *{box-sizing:border-box}
-body{
- margin:0;
- font-family:Arial,sans-serif;
- background:#f2f5fb;
- color:#172033;
-}
-.hidden{display:none!important}
-.dash-head{
- background:linear-gradient(120deg,#1456d9,#347cf5);
- color:white;
- padding:22px 18px;
- border-radius:0 0 25px 25px;
-}
-.dash-head-inner{
- max-width:1000px;
- margin:auto;
- display:flex;
- justify-content:space-between;
- align-items:center;
- gap:10px;
-}
-.brand{font-size:27px;font-weight:bold}
-.brand span{color:#ffb347}
-.container{
- max-width:1000px;
- padding:16px;
- margin:auto;
-}
-.btn{
- border:0;
- padding:12px 18px;
- border-radius:10px;
- font-weight:bold;
- cursor:pointer;
-}
-.light{background:white;color:#1456d9}
-.blue{background:#1764e8;color:white}
-.full{width:100%;margin-top:18px}
-.dash-grid{
- display:grid;
- grid-template-columns:repeat(3,1fr);
- gap:12px;
- margin:20px 0;
-}
-.stat,.panel{
- background:white;
- padding:18px;
- border-radius:16px;
- box-shadow:0 4px 15px #0000000d;
-}
-.stat small{display:block;color:#68758b}
-.stat strong{
- display:block;
- margin-top:8px;
- color:#1456d9;
- font-size:22px;
-}
-.two-col{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:16px;
-}
-h2{font-size:21px;margin-top:0}
-h3{font-size:17px;margin-top:22px}
-label{
- display:block;
- margin:14px 0 6px;
- font-weight:bold;
-}
-input,select,textarea{
- width:100%;
- padding:12px;
- border:1px solid #dce3ef;
- border-radius:9px;
- background:white;
- font-size:15px;
-}
-textarea{resize:vertical}
-.notice{
- padding:12px;
- border-radius:10px;
- background:#fff4dc;
- color:#795400;
- font-size:13px;
- line-height:1.6;
- margin:12px 0;
-}
-.muted{color:#68758b}
-.history-item{
- padding:13px;
- border:1px solid #e5eaf2;
- border-radius:10px;
- margin:10px 0;
-}
-.small{font-size:13px;color:#68758b;margin-top:6px}
-footer{
- text-align:center;
- padding:25px;
- color:#68758b;
-}
-@media(max-width:650px){
- .dash-grid{grid-template-columns:1fr 1fr}
- .two-col{grid-template-columns:1fr}
- .stat strong{font-size:19px}
-}
+body{margin:0;font-family:Arial,sans-serif;background:#f3f6fc;color:#17243b}
+header{background:linear-gradient(120deg,#102a56,#2468df);color:white;padding:20px}
+.wrap{max-width:850px;margin:22px auto;padding:0 14px}
+.card{background:white;padding:19px;border-radius:15px;margin-bottom:16px;box-shadow:0 5px 18px #0000000b}
+h2,h3{margin-top:0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+label{display:block;font-weight:bold;font-size:14px;margin:13px 0 6px}
+input,select,textarea{width:100%;padding:12px;border:1px solid #d8e0ed;border-radius:9px;font:inherit}
+button{border:0;border-radius:9px;padding:13px;background:#2468df;color:white;font-weight:bold;cursor:pointer}
+button:disabled{opacity:.5}
+.full{width:100%;margin-top:16px}
+.notice{background:#fff6e6;border:1px solid #f3d9a9;padding:13px;border-radius:10px;line-height:1.6;font-size:13px}
+.muted{color:#68758a;font-size:13px;line-height:1.6}
+.balance{font-size:27px;font-weight:bold;color:#2468df}
+.status{padding:10px;background:#eef4ff;border-radius:9px}
+#message{white-space:pre-wrap;margin-top:12px;font-size:14px}
+@media(max-width:550px){.grid{grid-template-columns:1fr}}
 </style>
 </head>
-
 <body>
 
-<section id="dashboardPage" class="hidden">
+<header>
+  <h2>PORO Ren</h2>
+  <p>আপনার ব্যক্তিগত Dashboard</p>
+  <p id="userEmail">লোড হচ্ছে...</p>
+  <button id="logoutBtn">লগআউট</button>
+</header>
 
- <div class="dash-head">
-  <div class="dash-head-inner">
-   <div>
-    <div class="brand">PORO <span>Ren</span></div>
-    <div id="welcomeText">স্বাগতম</div>
-   </div>
-   <button class="btn light" id="logoutBtn">লগআউট</button>
+<div class="wrap">
+
+<div class="notice">
+  <b>অফিসিয়াল নোটিশ</b><br>
+  আপনার জমা দেওয়া তথ্য ও ডকুমেন্ট যাচাই করা হবে।
+  ঋণ অনুমোদন নিশ্চিত নয়। অনুমোদিত লিখিত শর্ত ছাড়া কোনো জামানত পাঠাবেন না।
+</div>
+
+<div class="card">
+  <h3>আমার ব্যালেন্স</h3>
+  <div class="balance">৳০.০০</div>
+  <p class="muted">এটি প্রাথমিক প্রদর্শন। বাস্তব ব্যালেন্স Firebase-এ যাচাইকৃত লেনদেন ছাড়া দেখানো হবে না।</p>
+</div>
+
+<div class="card">
+  <h3>ঋণের পরিমাণ ও প্রস্তাবিত জামানত</h3>
+  <div class="grid">
+    <div>
+      <label>ঋণের পরিমাণ</label>
+      <select id="loanAmount">
+        <option value="20000">৳২০,০০০</option>
+        <option value="30000">৳৩০,০০০</option>
+        <option value="100000">৳১,০০,০০০</option>
+      </select>
+    </div>
+    <div>
+      <label>প্রস্তাবিত জামানত</label>
+      <input id="depositAmount" value="৳২,০০০" readonly>
+    </div>
   </div>
- </div>
+  <p class="muted">জামানতের অঙ্ক শুধু প্রস্তাবিত হিসাব; এই পেজে কোনো টাকা নেওয়া হয় না।</p>
+</div>
 
- <div class="container">
+<div class="card">
+  <h3>ঋণ আবেদন ফরম</h3>
 
-  <div class="dash-grid">
-   <div class="stat">
-    <small>ন্যূনতম আবেদন</small>
-    <strong>৳৩০,০০০</strong>
-   </div>
-   <div class="stat">
-    <small>প্রস্তাবিত জামানত</small>
-    <strong>৳৩,০০০</strong>
-   </div>
-   <div class="stat">
-    <small>আমার আবেদন</small>
-    <strong id="applicationCount">০</strong>
-   </div>
-  </div>
+  <form id="loanForm">
+    <label>সম্পূর্ণ নাম</label>
+    <input id="fullName" maxlength="80" required>
 
-  <div class="two-col">
+    <label>মোবাইল নম্বর</label>
+    <input id="phone" type="tel" required>
 
-   <div class="panel">
-    <h2>ঋণের আবেদন</h2>
+    <label>ঋণ নেওয়ার কারণ</label>
+    <textarea id="reason" rows="3" required></textarea>
 
-    <div class="notice">
-     আবেদন করার আগে ঋণের শর্ত, অনুমোদন ও নিরাপত্তা ব্যবস্থা যাচাই করুন।
-     অনুমোদন ছাড়া আসল NID বা ব্যক্তিগত কাগজ আপলোড করবেন না।
+    <div class="grid">
+      <div>
+        <label>পেশা</label>
+        <input id="occupation" required>
+      </div>
+      <div>
+        <label>মাসিক আয় (টাকা)</label>
+        <input id="income" type="number" min="0" required>
+      </div>
     </div>
 
-    <form id="loanForm">
+    <label>বর্তমান ঠিকানা</label>
+    <textarea id="address" rows="2" required></textarea>
 
-     <label>ঋণের পরিমাণ (৳)</label>
-     <input id="loanAmount" type="number"
-      min="30000" step="1000" value="30000" required>
+    <label>নমিনির নাম</label>
+    <input id="nomineeName" required>
 
-     <label>পেশা</label>
-     <select id="occupation" required>
-      <option value="">পেশা নির্বাচন করুন</option>
-      <option>চাকরি</option>
-      <option>ব্যবসা</option>
-      <option>কৃষি</option>
-      <option>অন্যান্য</option>
-     </select>
+    <label>নমিনির মোবাইল</label>
+    <input id="nomineePhone" type="tel" required>
 
-     <label>মাসিক আয় (৳)</label>
-     <input id="income" type="number" min="0" required>
+    <label>NID-এর কপি (ছবি বা PDF)</label>
+    <input id="nidFile" type="file" accept="image/jpeg,image/png,application/pdf" required>
 
-     <label>ঋণের কারণ</label>
-     <textarea id="reason" rows="3" required></textarea>
+    <label>ট্রেড লাইসেন্স (ছবি বা PDF)</label>
+    <input id="tradeFile" type="file" accept="image/jpeg,image/png,application/pdf">
 
-     <h3>ডকুমেন্ট</h3>
+    <label>নিজের এক কপি ছবি</label>
+    <input id="photoFile" type="file" accept="image/jpeg,image/png" required>
 
-     <label>NID সামনের অংশ</label>
-     <input type="file" id="nidFront">
+    <p class="muted">প্রতিটি ফাইল সর্বোচ্চ ৫ MB। প্রকৃত নথি জমা দেওয়ার আগে প্রতিষ্ঠানের পরিচয়, গোপনীয়তা নীতি ও তথ্য ব্যবহারের সম্মতি নিশ্চিত করুন।</p>
 
-     <label>NID পেছনের অংশ</label>
-     <input type="file" id="nidBack">
+    <label>
+      <input id="consent" type="checkbox" required style="width:auto">
+      আমি তথ্য যাচাই ও নিরাপদে সংরক্ষণের শর্ত পড়েছি এবং সম্মতি দিচ্ছি।
+    </label>
 
-     <label>আবেদনকারীর ছবি</label>
-     <input type="file" id="applicantPhoto">
+    <button class="full" id="submitBtn" type="submit">আবেদন জমা দিন</button>
+  </form>
 
-     <label>ঠিকানার প্রমাণ</label>
-     <input type="file" id="addressProof">
+  <div id="message"></div>
+</div>
 
-     <div id="businessDocWrap" class="hidden">
-      <label>ট্রেড লাইসেন্স</label>
-      <input type="file" id="tradeLicense">
-     </div>
+<div class="card">
+  <h3>আমার আবেদনসমূহ</h3>
+  <div id="applicationList" class="muted">আবেদন লোড হচ্ছে...</div>
+</div>
 
-     <div id="incomeDocWrap">
-      <label>আয়ের প্রমাণ</label>
-      <input type="file" id="incomeProof">
-     </div>
+</div>
 
-     <h3>নমিনির তথ্য</h3>
+<script type="module">
+import { initializeApp } from
+"https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 
-     <label>নমিনির নাম</label>
-     <input id="nomineeName" required>
+import {
+  getAuth, onAuthStateChanged, signOut
+} from
+"https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 
-     <label>নমিনির মোবাইল</label>
-     <input id="nomineePhone" type="tel" required>
+import {
+  getFirestore, collection, doc, setDoc,
+  query, where, getDocs, serverTimestamp
+} from
+"https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
 
-     <button class="btn blue full" id="applyBtn">
-      আবেদন জমা দিন
-     </button>
+import {
+  getStorage, ref, uploadBytes
+} from
+"https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
 
-    </form>
-   </div>
+// আপনার Firebase Configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAzlIrVn9FrsBDNNDoCvRCU1U1bHxSNtEzhY",
+  authDomain: "project-be074433-8fce-4dc9-bd7.firebaseapp.com",
+  projectId: "project-be074433-8fce-4dc9-bd7",
+  storageBucket: "project-be074433-8fce-4dc9-bd7.firebasestorage.app",
+  messagingSenderId: "678442800678",
+  appId: "1:678442800678:web:dc364fe500d9c3e37af8e7",
+  measurementId: "G-9YXCGNCKZZ"
+};
 
-   <div class="panel">
-    <h2>আমার প্রোফাইল</h2>
-    <p><b>নাম:</b> <span id="profileName">—</span></p>
-    <p><b>ইমেইল:</b> <span id="profileEmail">—</span></p>
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
 
-    <hr>
+const $ = id => document.getElementById(id);
+let currentUser = null;
 
-    <h2>আবেদনের ইতিহাস</h2>
-    <div id="historyList" class="muted">
-     এখনো কোনো আবেদন নেই।
-    </div>
-   </div>
+const depositRates = {
+  20000: 2000,
+  30000: 3000,
+  100000: 10000
+};
 
-  </div>
+$("loanAmount").addEventListener("change", () => {
+  const amount = $("loanAmount").value;
+  $("depositAmount").value =
+    "৳" + depositRates[amount].toLocaleString("en-US");
+});
 
-  <div class="panel" style="margin-top:18px">
-   <h2>পেমেন্ট তথ্য</h2>
-   <div class="notice">
-    এই সংস্করণে কোনো বাস্তব পেমেন্ট ব্যবস্থা চালু নেই।
-    অনুমোদিত মার্চেন্ট পেমেন্ট ব্যবস্থা ছাড়া টাকা সংগ্রহ করবেন না।
-   </div>
-  </div>
+function message(text, error=false) {
+  $("message").textContent = text;
+  $("message").style.color = error ? "#bd2525" : "#176b37";
+}
 
- </div>
-</section>
+function checkFile(file, optional=false) {
+  if (!file && optional) return;
+  if (!file) throw new Error("সব প্রয়োজনীয় ডকুমেন্ট নির্বাচন করুন।");
 
-<footer>© 2026 PORO Ren</footer>
+  const allowed = [
+    "image/jpeg","image/png","application/pdf"
+  ];
 
+  if (!allowed.includes(file.type))
+    throw new Error("শুধু JPG, PNG অথবা PDF ফাইল দিন।");
+
+  if (file.size > 5 * 1024 * 1024)
+    throw new Error("প্রতিটি ফাইল ৫ MB-এর মধ্যে হতে হবে।");
+}
+
+async function uploadDocument(userId, applicationId, key, file) {
+  if (!file) return null;
+
+  const safeName = key + "-" + Date.now();
+  const path = `applicationDocs/${userId}/${applicationId}/${safeName}`;
+
+  await uploadBytes(ref(storage, path), file, {
+    contentType: file.type
+  });
+
+  // Download URL নয়, শুধু Storage path সংরক্ষণ করা হচ্ছে।
+  return path;
+}
+
+async function loadApplications(user) {
+  const list = $("applicationList");
+  list.textContent = "লোড হচ্ছে...";
+
+  try {
+    const q = query(
+      collection(db, "applications"),
+      where("uid", "==", user.uid)
+    );
+    const result = await getDocs(q);
+
+    if (result.empty) {
+      list.textContent = "এখনো কোনো আবেদন পাওয়া যায়নি।";
+      return;
+    }
+
+    list.replaceChildren();
+
+    result.forEach(item => {
+      const data = item.data();
+      const card = document.createElement("div");
+      card.className = "status";
+
+      const heading = document.createElement("b");
+      heading.textContent = "ঋণ: ৳" +
+        Number(data.loanAmount).toLocaleString("en-US");
+
+      const status = document.createElement("p");
+      status.textContent = "অবস্থা: " + (data.status || "Pending");
+
+      const date = document.createElement("small");
+      date.textContent = "আবেদন আইডি: " + item.id;
+
+      card.append(heading, status, date);
+      list.append(card);
+    });
+  } catch (error) {
+    list.textContent = "আবেদন লোড করা যায়নি: " + error.code;
+  }
+}
+
+$("loanForm").addEventListener("submit", async event => {
+  event.preventDefault();
+
+  if (!currentUser) {
+    message("আগে লগইন করুন।", true);
+    return;
+  }
+
+  const nid = $("nidFile").files[0];
+  const trade = $("tradeFile").files[0];
+  const photo = $("photoFile").files[0];
+
+  const btn = $("submitBtn");
+  btn.disabled = true;
+
+  try {
+    checkFile(nid);
+    checkFile(trade, true);
+    checkFile(photo);
+
+    if (!$("consent").checked)
+      throw new Error("সম্মতি দিতে হবে।");
+
+    const loanAmount = Number($("loanAmount").value);
+
+    const applicationRef = doc(collection(db, "applications"));
+    const applicationId = applicationRef.id;
+
+    message("ডকুমেন্ট আপলোড হচ্ছে...");
+
+    const documents = {
+      nid: await uploadDocument(currentUser.uid, applicationId, "nid", nid),
+      tradeLicense: await uploadDocument(currentUser.uid, applicationId, "trade", trade),
+      applicantPhoto: await uploadDocument(currentUser.uid, applicationId, "photo", photo)
+    };
+
+    message("আবেদন সংরক্ষণ হচ্ছে...");
+
+    await setDoc(applicationRef, {
+      uid: currentUser.uid,
+      applicationId,
+      fullName: $("fullName").value.trim(),
+      email: currentUser.email,
+      phone: $("phone").value.trim(),
+      loanAmount,
+      proposedDeposit: depositRates[loanAmount],
+      occupation: $("occupation").value.trim(),
+      income: Number($("income").value),
+      reason: $("reason").value.trim(),
+      address: $("address").value.trim(),
+      nomineeName: $("nomineeName").value.trim(),
+      nomineePhone: $("nomineePhone").value.trim(),
+      documents,
+      status: "pending",
+      createdAt: serverTimestamp()
+    });
+
+    message("আপনার আবেদন Firebase-এ জমা হয়েছে।");
+    $("loanForm").reset();
+    $("depositAmount").value = "৳২,০০০";
+    await loadApplications(currentUser);
+
+  } catch (error) {
+    console.error(error);
+    message("আবেদন জমা হয়নি: " + (error.message || error.code), true);
+  } finally {
+    btn.disabled = false;
+  }
+});
+
+$("logoutBtn").addEventListener("click", async () => {
+  await signOut(auth);
+  location.href = "index.html";
+});
+
+onAuthStateChanged(auth, async user => {
+  if (!user) {
+    location.href = "index.html";
+    return;
+  }
+
+  currentUser = user;
+  $("userEmail").textContent = user.email || "";
+  await loadApplications(user);
+});
+</script>
 </body>
 </html>
