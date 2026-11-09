@@ -4,194 +4,360 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PORO Ren</title>
+<title>PORO Ren | Welcome</title>
 
 <style>
-:root{
---n:#102a56;--b:#2468df;--o:#ff9b35;
---ink:#17243b;--muted:#6d7890;--line:#e5eaf2;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:#f4f7fc;color:var(--ink)}
-button,input{font:inherit}
-button{cursor:pointer}
-.hidden{display:none!important}
 
-.topbar,.dash-head{
-background:linear-gradient(120deg,var(--n),var(--b));
-color:white;padding:16px 5%;display:flex;
-align-items:center;justify-content:space-between;gap:12px;
+body {
+  font-family: Arial, sans-serif;
+  background: #f3f6fc;
+  color: #172554;
 }
-.brand{font-size:25px;font-weight:bold}
-.brand span{color:#ffb45f}
-.btn{border:0;border-radius:11px;padding:12px 17px;font-weight:bold}
-.light{background:white;color:var(--n)}
-.orange{background:var(--o);color:#241500}
-.blue{background:var(--b);color:white}
-.outline{background:white;border:1px solid #cbd6e8;color:var(--n)}
-.full{width:100%;margin-top:15px}
 
-.hero{background:linear-gradient(120deg,#102a56,#286fe9);color:white;padding:48px 5%}
-.hero-inner{max-width:1100px;margin:auto;display:grid;grid-template-columns:1.2fr .8fr;gap:25px;align-items:center}
-.hero h1{font-size:40px}
-.hero p{line-height:1.8;color:#dce7ff}
-.hero-card,.panel,.feature,.auth-card{
-background:white;color:var(--ink);border:1px solid var(--line);
-border-radius:17px;padding:20px;box-shadow:0 7px 22px #142d5010;
+header {
+  background: #071b49;
+  color: white;
+  padding: 18px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
 }
-.hero-card strong{font-size:28px;color:var(--b)}
-.container{max-width:1100px;margin:25px auto;padding:0 16px}
-.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.muted,.small{color:var(--muted);line-height:1.65}
-.muted{font-size:14px}.small{font-size:12px}
-.auth-wrap{max-width:470px;margin:35px auto;padding:0 16px}
-.auth-card{padding:25px}
-.tabs{display:grid;grid-template-columns:1fr 1fr;background:#eef3fc;border-radius:12px;padding:5px;margin:18px 0}
-.tab{border:0;padding:11px;border-radius:9px;background:transparent;color:var(--muted)}
-.tab.active{background:white;color:var(--b)}
-label{display:block;font-size:14px;font-weight:bold;margin:13px 0 7px}
-input{width:100%;padding:13px;border:1px solid #d9e1ee;border-radius:10px;background:white}
-.dash-head{border-radius:0 0 24px 24px}
-.dash-content{max-width:900px;margin:25px auto;padding:0 16px}
-footer{text-align:center;padding:30px;color:var(--muted)}
-#authMessage{margin-top:12px;color:#c0392b}
-button:disabled{opacity:.55}
 
-@media(max-width:760px){
-.hero-inner{grid-template-columns:1fr}
-.features{grid-template-columns:1fr}
+.logo {
+  font-size: 25px;
+  font-weight: bold;
+  color: #ff9f1c;
 }
-@media(max-width:420px){.brand{font-size:22px}}
+
+nav button {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 7px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+nav button:hover {
+  background: #ff9f1c;
+  border-color: #ff9f1c;
+}
+
+.hero {
+  padding: 70px 20px;
+  text-align: center;
+  background: linear-gradient(135deg, #071b49, #1645a3);
+  color: white;
+}
+
+.hero h1 {
+  font-size: 38px;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 17px;
+  line-height: 1.7;
+  max-width: 650px;
+  margin: auto;
+}
+
+.hero button {
+  margin-top: 25px;
+  padding: 14px 30px;
+  background: #ff9f1c;
+  border: none;
+  border-radius: 8px;
+  color: #071b49;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 40px 7%;
+}
+
+.feature {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 5px 20px #0000000d;
+}
+
+.feature h3 {
+  margin-bottom: 12px;
+  color: #1645a3;
+}
+
+.auth-section {
+  padding: 40px 15px;
+  display: none;
+}
+
+.auth-section.active {
+  display: block;
+}
+
+.auth-box {
+  max-width: 420px;
+  margin: auto;
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px #00000012;
+}
+
+.auth-box h2 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #071b49;
+}
+
+.auth-box input {
+  width: 100%;
+  padding: 13px;
+  margin-bottom: 15px;
+  border: 1px solid #d5dbea;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.auth-box input:focus {
+  outline: 2px solid #1645a3;
+}
+
+.main-btn {
+  width: 100%;
+  padding: 14px;
+  background: #1645a3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.main-btn:hover {
+  background: #071b49;
+}
+
+.auth-link {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 14px;
+}
+
+.auth-link a {
+  color: #1645a3;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#message {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+  color: #d62828;
+  word-break: break-word;
+}
+
+footer {
+  background: #071b49;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+@media(max-width:600px) {
+  header {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  nav button {
+    margin: 4px;
+  }
+}
 </style>
 </head>
 
 <body>
 
-<header class="topbar" id="publicHeader">
-  <div class="brand">PORO <span>Ren</span></div>
-  <div>
-    <button class="btn light" onclick="showAuth('login')">লগইন</button>
-    <button class="btn orange" onclick="showAuth('register')">রেজিস্ট্রেশন</button>
+<header>
+  <div class="logo">PORO Ren</div>
+
+  <nav>
+    <button onclick="showHome()">Home</button>
+    <button onclick="showLogin()">Login</button>
+    <button onclick="showRegister()">Register</button>
+  </nav>
+</header>
+
+<!-- HOME PAGE -->
+<section id="homePage">
+
+  <div class="hero">
+    <h1>Welcome to PORO Ren</h1>
+
+    <p>
+      আপনার ডিজিটাল প্ল্যাটফর্মে স্বাগতম।
+      সহজে অ্যাকাউন্ট তৈরি করুন এবং আপনার Dashboard ব্যবহার করুন।
+    </p>
+
+    <button onclick="showRegister()">Get Started</button>
   </div>
-</header>
 
-<main id="homePage">
-<section class="hero">
-<div class="hero-inner">
-<div>
-<h1>আপনার প্রয়োজনের পাশে<br>PORO Ren</h1>
-<p>অনলাইনে আবেদন ও আবেদনের অবস্থা দেখার প্ল্যাটফর্ম।</p>
-<button class="btn orange" onclick="showAuth('register')">এখনই অ্যাকাউন্ট খুলুন</button>
-</div>
-<div class="hero-card">
-<p>ন্যূনতম ঋণের আবেদন</p>
-<strong>৳৩০,০০০</strong>
-<hr>
-<p>প্রস্তাবিত জামানত</p>
-<strong style="color:#f08b25">৳৩,০০০</strong>
-<p class="small">এগুলো প্রদর্শিত তথ্য; কোনো টাকা জমা দেবেন না।</p>
-</div>
-</div>
+  <div class="features">
+
+    <div class="feature">
+      <h3>🔐 Secure Account</h3>
+      <p>Firebase Authentication দিয়ে নিরাপদ Login ও Register।</p>
+    </div>
+
+    <div class="feature">
+      <h3>📱 Mobile Friendly</h3>
+      <p>মোবাইল এবং কম্পিউটারে সুন্দরভাবে ব্যবহার করুন।</p>
+    </div>
+
+    <div class="feature">
+      <h3>👤 Personal Dashboard</h3>
+      <p>Login করে নিজের Dashboard ব্যবহার করুন।</p>
+    </div>
+
+  </div>
+
 </section>
 
-<div class="container">
-<section class="features">
-<div class="feature">
-<h3>📝 আবেদন</h3>
-<p class="muted">অনলাইনে আবেদন জমা দেওয়ার সুবিধা।</p>
-</div>
-<div class="feature">
-<h3>📊 আবেদনের অবস্থা</h3>
-<p class="muted">নিজের আবেদনের অবস্থা দেখুন।</p>
-</div>
-<div class="feature">
-<h3>🔐 ড্যাশবোর্ড</h3>
-<p class="muted">নিজের প্রোফাইল ও অ্যাকাউন্ট দেখুন।</p>
-</div>
+<!-- LOGIN FORM -->
+<section id="loginSection" class="auth-section">
+
+  <div class="auth-box">
+    <h2>Login Account</h2>
+
+    <form id="loginForm">
+
+      <input
+        type="email"
+        id="loginEmail"
+        placeholder="Email Address"
+        required
+      >
+
+      <input
+        type="password"
+        id="loginPassword"
+        placeholder="Password"
+        required
+      >
+
+      <button class="main-btn" type="submit">
+        Login
+      </button>
+
+    </form>
+
+    <div class="auth-link">
+      Account নেই?
+      <a onclick="showRegister()">Register করুন</a>
+    </div>
+
+    <div id="loginMessage"></div>
+  </div>
+
 </section>
 
-<section class="panel" style="margin-top:18px">
-<h2>গুরুত্বপূর্ণ তথ্য</h2>
-<p class="muted">প্রকৃত ঋণ, জামানত বা পেমেন্ট চালুর আগে প্রযোজ্য আইনগত অনুমোদন, লিখিত শর্ত, গোপনীয়তা নীতি ও নিরাপত্তা নিশ্চিত করতে হবে।</p>
-</section>
-</div>
-</main>
+<!-- REGISTER FORM -->
+<section id="registerSection" class="auth-section">
 
-<section class="auth-wrap hidden" id="authPage">
-<div class="auth-card">
-<div class="brand" style="text-align:center;color:#102a56">PORO <span>Ren</span></div>
-<h2 id="authTitle" style="text-align:center">লগইন করুন</h2>
+  <div class="auth-box">
+    <h2>Create Account</h2>
 
-<div class="tabs">
-<button class="tab active" id="loginTab" onclick="showAuth('login')">লগইন</button>
-<button class="tab" id="registerTab" onclick="showAuth('register')">রেজিস্ট্রেশন</button>
-</div>
+    <form id="registerForm">
 
-<form id="loginForm">
-<label>ইমেইল</label>
-<input id="loginEmail" type="email" required>
-<label>পাসওয়ার্ড</label>
-<input id="loginPass" type="password" required>
-<button class="btn blue full" id="loginBtn">লগইন করুন</button>
-</form>
+      <input
+        type="text"
+        id="registerName"
+        placeholder="Your Full Name"
+        required
+      >
 
-<form id="registerForm" class="hidden">
-<label>আপনার নাম</label>
-<input id="regName" required maxlength="80">
-<label>ইমেইল</label>
-<input id="regEmail" type="email" required>
-<label>পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)</label>
-<input id="regPass" type="password" minlength="6" required>
-<button class="btn blue full" id="registerBtn">অ্যাকাউন্ট তৈরি করুন</button>
-</form>
+      <input
+        type="email"
+        id="registerEmail"
+        placeholder="Email Address"
+        required
+      >
 
-<p class="small">Firebase Authentication দিয়ে লগইন ও রেজিস্ট্রেশন।</p>
-<button class="btn outline full" onclick="backHome()">হোম পেজে ফিরে যান</button>
-<div id="authMessage" class="small"></div>
-</div>
-</section>
+      <input
+        type="password"
+        id="registerPassword"
+        placeholder="Password (Minimum 6 Characters)"
+        minlength="6"
+        required
+      >
 
-<section id="dashboardPage" class="hidden">
-<header class="dash-head">
-<div class="dash-head-inner">
-<div class="brand">PORO <span>Ren</span></div>
-<button class="btn light" id="logoutBtn">লগআউট</button>
-</div>
-</header>
+      <input
+        type="password"
+        id="confirmPassword"
+        placeholder="Confirm Password"
+        minlength="6"
+        required
+      >
 
-<div class="dash-content">
-<div class="panel">
-<h2>স্বাগতম, <span id="welcomeName">ব্যবহারকারী</span>!</h2>
-<p class="muted">আপনার PORO Ren ড্যাশবোর্ডে স্বাগতম।</p>
-<hr>
-<p><b>আপনার নাম:</b> <span id="profileName"></span></p>
-<p><b>আপনার ইমেইল:</b> <span id="profileEmail"></span></p>
-</div>
+      <button class="main-btn" type="submit">
+        Create Account
+      </button>
 
-<div class="panel" style="margin-top:18px">
-<h3>ঋণ আবেদন</h3>
-<p class="muted">এই ড্যাশবোর্ডটি বর্তমানে লগইন ও প্রোফাইল দেখানোর জন্য তৈরি। ঋণের আবেদন এবং পেমেন্ট সুবিধা এখনো চালু করা হয়নি।</p>
-</div>
-</div>
+    </form>
+
+    <div class="auth-link">
+      Account আছে?
+      <a onclick="showLogin()">Login করুন</a>
+    </div>
+
+    <div id="registerMessage"></div>
+  </div>
+
 </section>
 
-<footer>© 2026 PORO Ren</footer>
+<footer>
+  © 2026 PORO Ren | All Rights Reserved
+</footer>
 
+<!-- FIREBASE -->
 <script type="module">
-import { initializeApp } from
-"https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
-  updateProfile
-} from
-"https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+  updateProfile,
+  onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 
-// আপনার Firebase Configuration
+/* FIREBASE CONFIG */
 const firebaseConfig = {
   apiKey: "AIzaSyAzlIrVn9FrsBDNNDoCvRCU1bHxSNtEzhY",
   authDomain: "project-be074433-8fce-4dc9-bd7.firebaseapp.com",
@@ -202,120 +368,118 @@ const firebaseConfig = {
   measurementId: "G-9YXCGNCKZZ"
 };
 
+/* FIREBASE INITIALIZE */
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-const $ = id => document.getElementById(id);
-
-window.showAuth = function(type){
-  $("homePage").classList.add("hidden");
-  $("authPage").classList.remove("hidden");
-  $("publicHeader").classList.remove("hidden");
-
-  const isLogin = type === "login";
-  $("loginForm").classList.toggle("hidden", !isLogin);
-  $("registerForm").classList.toggle("hidden", isLogin);
-  $("loginTab").classList.toggle("active", isLogin);
-  $("registerTab").classList.toggle("active", !isLogin);
-  $("authTitle").textContent = isLogin ? "লগইন করুন" : "নতুন অ্যাকাউন্ট তৈরি করুন";
-  $("authMessage").textContent = "";
+/* PAGE CONTROL */
+window.showHome = function() {
+  document.getElementById("homePage").style.display = "block";
+  document.getElementById("loginSection").classList.remove("active");
+  document.getElementById("registerSection").classList.remove("active");
 };
 
-window.backHome = function(){
-  $("authPage").classList.add("hidden");
-  $("homePage").classList.remove("hidden");
-  $("publicHeader").classList.remove("hidden");
-  $("authMessage").textContent = "";
+window.showLogin = function() {
+  document.getElementById("homePage").style.display = "none";
+  document.getElementById("loginSection").classList.add("active");
+  document.getElementById("registerSection").classList.remove("active");
 };
 
-function showDashboard(user){
-  $("publicHeader").classList.add("hidden");
-  $("homePage").classList.add("hidden");
-  $("authPage").classList.add("hidden");
-  $("dashboardPage").classList.remove("hidden");
+window.showRegister = function() {
+  document.getElementById("homePage").style.display = "none";
+  document.getElementById("registerSection").classList.add("active");
+  document.getElementById("loginSection").classList.remove("active");
+};
 
-  const name = user.displayName || "ব্যবহারকারী";
-  $("welcomeName").textContent = name;
-  $("profileName").textContent = name;
-  $("profileEmail").textContent = user.email || "";
-}
+/* REGISTER */
+document.getElementById("registerForm")
+.addEventListener("submit", async function(e) {
 
-function showMessage(message){
-  $("authMessage").textContent = message;
-}
-
-$("registerForm").addEventListener("submit", async e => {
   e.preventDefault();
-  const btn = $("registerBtn");
-  btn.disabled = true;
-  showMessage("অ্যাকাউন্ট তৈরি হচ্ছে...");
 
-  try{
-    const name = $("regName").value.trim();
-    const email = $("regEmail").value.trim();
-    const password = $("regPass").value;
+  const name = document.getElementById("registerName").value.trim();
+  const email = document.getElementById("registerEmail").value.trim();
+  const password = document.getElementById("registerPassword").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
+  const message = document.getElementById("registerMessage");
 
-    const result = await createUserWithEmailAndPassword(auth,email,password);
-    await updateProfile(result.user,{displayName:name});
+  message.style.color = "red";
+
+  if(password !== confirmPassword) {
+    message.textContent = "দুইটি Password মিলছে না!";
+    return;
+  }
+
+  message.style.color = "#1645a3";
+  message.textContent = "Account তৈরি হচ্ছে...";
+
+  try {
+
+    const result = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    await updateProfile(result.user, {
+      displayName: name
+    });
+
+    message.style.color = "green";
+    message.textContent = "Account সফলভাবে তৈরি হয়েছে!";
+
     window.location.href = "dashboard.html";
-  }catch(error){
-    showMessage(getErrorMessage(error.code));
-  }finally{
-    btn.disabled = false;
+
+  } catch(error) {
+
+    message.style.color = "red";
+    message.textContent = error.message;
+
   }
+
 });
 
-$("loginForm").addEventListener("submit", async e => {
+/* LOGIN */
+document.getElementById("loginForm")
+.addEventListener("submit", async function(e) {
+
   e.preventDefault();
-  const btn = $("loginBtn");
-  btn.disabled = true;
-  showMessage("লগইন হচ্ছে...");
 
-  try{
-    const email = $("loginEmail").value.trim();
-    const password = $("loginPass").value;
-    await signInWithEmailAndPassword(auth,email,password);
-  }catch(error){
-    showMessage(getErrorMessage(error.code));
-  }finally{
-    btn.disabled = false;
+  const email = document.getElementById("loginEmail").value.trim();
+  const password = document.getElementById("loginPassword").value;
+  const message = document.getElementById("loginMessage");
+
+  message.style.color = "#1645a3";
+  message.textContent = "Login হচ্ছে...";
+
+  try {
+
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+    window.location.href = "dashboard.html";
+
+  } catch(error) {
+
+    message.style.color = "red";
+    message.textContent = error.message;
+
   }
+
 });
 
-$("logoutBtn").addEventListener("click", async () => {
-  try{
-    await signOut(auth);
-  }catch(error){
-    alert(getErrorMessage(error.code));
+/* ALREADY LOGIN CHECK */
+onAuthStateChanged(auth, function(user) {
+
+  if(user) {
+    window.location.href = "dashboard.html";
   }
+
 });
 
-
-onAuthStateChanged(auth, user => {
-  if(user){
-    showDashboard(user);
-  }else{
-    $("dashboardPage").classList.add("hidden");
-    $("homePage").classList.remove("hidden");
-    $("publicHeader").classList.remove("hidden");
-  }
-});
-  
-
-function getErrorMessage(code){
-  const errors = {
-    "auth/email-already-in-use":"এই ইমেইল দিয়ে আগে অ্যাকাউন্ট খোলা হয়েছে।",
-    "auth/invalid-email":"সঠিক ইমেইল লিখুন।",
-    "auth/weak-password":"কমপক্ষে ৬ অক্ষরের পাসওয়ার্ড দিন।",
-    "auth/user-not-found":"এই ইমেইলে কোনো অ্যাকাউন্ট পাওয়া যায়নি।",
-    "auth/wrong-password":"পাসওয়ার্ড সঠিক নয়।",
-    "auth/invalid-credential":"ইমেইল অথবা পাসওয়ার্ড সঠিক নয়।",
-    "auth/network-request-failed":"ইন্টারনেট সংযোগ পরীক্ষা করুন।",
-    "auth/operation-not-allowed":"Firebase Authentication-এ Email/Password চালু করুন।",
-    "auth/configuration-not-found":"Firebase Authentication-এর প্রজেক্ট ও কনফিগারেশন পরীক্ষা করুন।"
-  };
-  return errors[code] || "সমস্যা হয়েছে: " + code;
-}
 </script>
 
 </body>
