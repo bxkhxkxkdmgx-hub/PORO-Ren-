@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PORO Ren Dashboard</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#f2f5fb;
+ color:#172033;
+}
+.hidden{display:none!important}
+.dash-head{
+ background:linear-gradient(120deg,#1456d9,#347cf5);
+ color:white;
+ padding:22px 18px;
+ border-radius:0 0 25px 25px;
+}
+.dash-head-inner{
+ max-width:1000px;
+ margin:auto;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px;
+}
+.brand{font-size:27px;font-weight:bold}
+.brand span{color:#ffb347}
+.container{
+ max-width:1000px;
+ padding:16px;
+ margin:auto;
+}
+.btn{
+ border:0;
+ padding:12px 18px;
+ border-radius:10px;
+ font-weight:bold;
+ cursor:pointer;
+}
+.light{background:white;color:#1456d9}
+.blue{background:#1764e8;color:white}
+.full{width:100%;margin-top:18px}
+.dash-grid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:12px;
+ margin:20px 0;
+}
+.stat,.panel{
+ background:white;
+ padding:18px;
+ border-radius:16px;
+ box-shadow:0 4px 15px #0000000d;
+}
+.stat small{display:block;color:#68758b}
+.stat strong{
+ display:block;
+ margin-top:8px;
+ color:#1456d9;
+ font-size:22px;
+}
+.two-col{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:16px;
+}
+h2{font-size:21px;margin-top:0}
+h3{font-size:17px;margin-top:22px}
+label{
+ display:block;
+ margin:14px 0 6px;
+ font-weight:bold;
+}
+input,select,textarea{
+ width:100%;
+ padding:12px;
+ border:1px solid #dce3ef;
+ border-radius:9px;
+ background:white;
+ font-size:15px;
+}
+textarea{resize:vertical}
+.notice{
+ padding:12px;
+ border-radius:10px;
+ background:#fff4dc;
+ color:#795400;
+ font-size:13px;
+ line-height:1.6;
+ margin:12px 0;
+}
+.muted{color:#68758b}
+.history-item{
+ padding:13px;
+ border:1px solid #e5eaf2;
+ border-radius:10px;
+ margin:10px 0;
+}
+.small{font-size:13px;color:#68758b;margin-top:6px}
+footer{
+ text-align:center;
+ padding:25px;
+ color:#68758b;
+}
+@media(max-width:650px){
+ .dash-grid{grid-template-columns:1fr 1fr}
+ .two-col{grid-template-columns:1fr}
+ .stat strong{font-size:19px}
+}
+</style>
+</head>
+
+<body>
+
+<section id="dashboardPage" class="hidden">
+
+ <div class="dash-head">
+  <div class="dash-head-inner">
+   <div>
+    <div class="brand">PORO <span>Ren</span></div>
+    <div id="welcomeText">স্বাগতম</div>
+   </div>
+   <button class="btn light" id="logoutBtn">লগআউট</button>
+  </div>
+ </div>
+
+ <div class="container">
+
+  <div class="dash-grid">
+   <div class="stat">
+    <small>ন্যূনতম আবেদন</small>
+    <strong>৳৩০,০০০</strong>
+   </div>
+   <div class="stat">
+    <small>প্রস্তাবিত জামানত</small>
+    <strong>৳৩,০০০</strong>
+   </div>
+   <div class="stat">
+    <small>আমার আবেদন</small>
+    <strong id="applicationCount">০</strong>
+   </div>
+  </div>
+
+  <div class="two-col">
+
+   <div class="panel">
+    <h2>ঋণের আবেদন</h2>
+
+    <div class="notice">
+     আবেদন করার আগে ঋণের শর্ত, অনুমোদন ও নিরাপত্তা ব্যবস্থা যাচাই করুন।
+     অনুমোদন ছাড়া আসল NID বা ব্যক্তিগত কাগজ আপলোড করবেন না।
+    </div>
+
+    <form id="loanForm">
+
+     <label>ঋণের পরিমাণ (৳)</label>
+     <input id="loanAmount" type="number"
+      min="30000" step="1000" value="30000" required>
+
+     <label>পেশা</label>
+     <select id="occupation" required>
+      <option value="">পেশা নির্বাচন করুন</option>
+      <option>চাকরি</option>
+      <option>ব্যবসা</option>
+      <option>কৃষি</option>
+      <option>অন্যান্য</option>
+     </select>
+
+     <label>মাসিক আয় (৳)</label>
+     <input id="income" type="number" min="0" required>
+
+     <label>ঋণের কারণ</label>
+     <textarea id="reason" rows="3" required></textarea>
+
+     <h3>ডকুমেন্ট</h3>
+
+     <label>NID সামনের অংশ</label>
+     <input type="file" id="nidFront">
+
+     <label>NID পেছনের অংশ</label>
+     <input type="file" id="nidBack">
+
+     <label>আবেদনকারীর ছবি</label>
+     <input type="file" id="applicantPhoto">
+
+     <label>ঠিকানার প্রমাণ</label>
+     <input type="file" id="addressProof">
+
+     <div id="businessDocWrap" class="hidden">
+      <label>ট্রেড লাইসেন্স</label>
+      <input type="file" id="tradeLicense">
+     </div>
+
+     <div id="incomeDocWrap">
+      <label>আয়ের প্রমাণ</label>
+      <input type="file" id="incomeProof">
+     </div>
+
+     <h3>নমিনির তথ্য</h3>
+
+     <label>নমিনির নাম</label>
+     <input id="nomineeName" required>
+
+     <label>নমিনির মোবাইল</label>
+     <input id="nomineePhone" type="tel" required>
+
+     <button class="btn blue full" id="applyBtn">
+      আবেদন জমা দিন
+     </button>
+
+    </form>
+   </div>
+
+   <div class="panel">
+    <h2>আমার প্রোফাইল</h2>
+    <p><b>নাম:</b> <span id="profileName">—</span></p>
+    <p><b>ইমেইল:</b> <span id="profileEmail">—</span></p>
+
+    <hr>
+
+    <h2>আবেদনের ইতিহাস</h2>
+    <div id="historyList" class="muted">
+     এখনো কোনো আবেদন নেই।
+    </div>
+   </div>
+
+  </div>
+
+  <div class="panel" style="margin-top:18px">
+   <h2>পেমেন্ট তথ্য</h2>
+   <div class="notice">
+    এই সংস্করণে কোনো বাস্তব পেমেন্ট ব্যবস্থা চালু নেই।
+    অনুমোদিত মার্চেন্ট পেমেন্ট ব্যবস্থা ছাড়া টাকা সংগ্রহ করবেন না।
+   </div>
+  </div>
+
+ </div>
+</section>
+
+<footer>© 2026 PORO Ren</footer>
+
+</body>
+</html>
