@@ -290,11 +290,17 @@ $("logoutBtn").addEventListener("click", async () => {
   }
 });
 
+
 onAuthStateChanged(auth, user => {
   if(user){
-    window.location.href = "dashboard.html";
+    showDashboard(user);
+  }else{
+    $("dashboardPage").classList.add("hidden");
+    $("homePage").classList.remove("hidden");
+    $("publicHeader").classList.remove("hidden");
   }
 });
+  
 
 function getErrorMessage(code){
   const errors = {
