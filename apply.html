@@ -1,0 +1,389 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PORO Ren - Loan Application</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+font-family:Arial,sans-serif;
+background:#f1f5fc;
+color:#102a56;
+padding-bottom:30px;
+}
+
+header{
+background:linear-gradient(120deg,#06235a,#0759d8);
+color:white;
+padding:22px 18px;
+font-size:25px;
+font-weight:bold;
+}
+
+header span{color:#ff9b35}
+
+.container{
+max-width:600px;
+margin:auto;
+padding:15px;
+}
+
+.card{
+background:white;
+padding:22px;
+border-radius:17px;
+box-shadow:0 5px 20px #00000008;
+margin-bottom:18px;
+}
+
+.title{
+font-size:23px;
+margin-bottom:10px;
+}
+
+.subtitle{
+font-size:14px;
+color:#64748b;
+line-height:1.7;
+margin-bottom:20px;
+}
+
+.section-title{
+font-size:17px;
+margin:22px 0 12px;
+color:#0759d8;
+border-bottom:1px solid #e5eaf4;
+padding-bottom:10px;
+}
+
+label{
+display:block;
+font-size:14px;
+font-weight:bold;
+margin:14px 0 7px;
+}
+
+input,select,textarea{
+width:100%;
+padding:14px;
+border:1px solid #dce3ef;
+border-radius:10px;
+background:#f9fbff;
+font-size:15px;
+outline:none;
+}
+
+input:focus,select:focus,textarea:focus{
+border-color:#0759d8;
+background:white;
+}
+
+input[type=file]{
+padding:10px;
+font-size:13px;
+}
+
+small{
+display:block;
+color:#64748b;
+font-size:12px;
+margin-top:6px;
+line-height:1.6;
+}
+
+.submit-btn{
+width:100%;
+padding:17px;
+background:#ff9b35;
+border:0;
+border-radius:12px;
+font-size:17px;
+font-weight:bold;
+color:#102a56;
+cursor:pointer;
+margin-top:22px;
+}
+
+.submit-btn:disabled{
+opacity:.6;
+}
+
+.back-btn{
+display:block;
+text-align:center;
+padding:15px;
+text-decoration:none;
+background:#0759d8;
+color:white;
+border-radius:10px;
+margin-top:15px;
+}
+
+.notice{
+background:#e7efff;
+padding:15px;
+border-radius:10px;
+font-size:13px;
+line-height:1.8;
+color:#1645a3;
+margin-top:15px;
+}
+
+#message{
+margin-top:15px;
+text-align:center;
+font-size:14px;
+line-height:1.7;
+}
+
+footer{
+text-align:center;
+color:#64748b;
+padding:20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+PORO <span>Ren</span>
+</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2 class="title">📝 ঋণের আবেদন</h2>
+
+<p class="subtitle">
+আপনার সঠিক তথ্য দিয়ে আবেদন ফর্ম পূরণ করুন।
+</p>
+
+<form id="loanForm">
+
+<h3 class="section-title">👤 ব্যক্তিগত তথ্য</h3>
+
+<label>১. আপনার নাম</label>
+<input id="fullName" type="text" placeholder="সম্পূর্ণ নাম লিখুন" required>
+
+<label>২. জাতীয় পরিচয়পত্র (NID) ছবি</label>
+<input id="nidPhoto" type="file" accept="image/*" required>
+<small>নিজের NID-এর ছবি নির্বাচন করুন।</small>
+
+<label>৩. ইউনিয়ন পরিচয়পত্র</label>
+<input id="unionPhoto" type="file" accept="image/*" required>
+
+<label>৪. পেশার ধরন</label>
+<select id="profession" required>
+<option value="">পেশা নির্বাচন করুন</option>
+<option>চাকরি</option>
+<option>ব্যবসা</option>
+<option>কৃষি</option>
+<option>ফ্রিল্যান্সিং</option>
+<option>অন্যান্য</option>
+</select>
+
+<label>৫. নমিনির NID কার্ড ছবি</label>
+<input id="nomineeNid" type="file" accept="image/*" required>
+
+<label>৬. নমিনির মোবাইল নম্বর</label>
+<input id="nomineePhone" type="tel" placeholder="নমিনির মোবাইল নম্বর" required>
+
+<label>৭. নিজের মোবাইল নম্বর</label>
+<input id="ownPhone" type="tel" placeholder="আপনার মোবাইল নম্বর" required>
+
+<label>৮. নিজের ঠিকানা</label>
+<textarea id="address" rows="3" placeholder="গ্রাম, ইউনিয়ন, উপজেলা, জেলা" required></textarea>
+
+<label>৯. বাবার নাম</label>
+<input id="fatherName" type="text" placeholder="বাবার সম্পূর্ণ নাম" required>
+
+<label>১০. মায়ের নাম</label>
+<input id="motherName" type="text" placeholder="মায়ের সম্পূর্ণ নাম" required>
+
+<h3 class="section-title">💳 টাকা গ্রহণের অ্যাকাউন্ট</h3>
+
+<label>যে অ্যাকাউন্টে টাকা গ্রহণ করবেন</label>
+
+<select id="paymentMethod" required>
+<option value="">পেমেন্ট মাধ্যম নির্বাচন</option>
+<option>bKash</option>
+<option>Nagad</option>
+<option>Rocket</option>
+<option>Bank Account</option>
+</select>
+
+<label>অ্যাকাউন্ট নম্বর</label>
+<input id="accountNumber" type="text" placeholder="অ্যাকাউন্ট নম্বর লিখুন" required>
+
+<div class="notice">
+🔐 আপনার তথ্য নিরাপদে সংরক্ষণ করা উচিত।
+শুধু অনুমোদিত প্রশাসক আবেদন দেখতে পারবেন।
+</div>
+
+<label style="display:flex;align-items:center;gap:10px;line-height:1.6">
+<input type="checkbox" id="consent" required style="width:18px;height:18px">
+আমি নিশ্চিত করছি যে আমার দেওয়া তথ্য সঠিক এবং তথ্য ব্যবহারে সম্মতি দিচ্ছি।
+</label>
+
+<button class="submit-btn" type="submit" id="submitBtn">
+📨 আবেদন সাবমিট করুন
+</button>
+
+<div id="message"></div>
+
+</form>
+
+<a href="dashboard.html" class="back-btn">← Dashboard-এ ফিরে যান</a>
+
+</div>
+
+</div>
+
+<footer>© 2026 PORO Ren</footer>
+
+<script type="module">
+
+import {initializeApp}
+from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+
+import {
+getAuth,
+onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
+import {
+getFirestore,
+collection,
+addDoc,
+serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+import {
+getStorage,
+ref,
+uploadBytes,
+getDownloadURL
+}
+from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
+
+const firebaseConfig={
+apiKey:"AIzaSyAzlIrVn9FrsBDNNDoCvRCU1bHxSNtEzhY",
+authDomain:"project-be074433-8fce-4dc9-bd7.firebaseapp.com",
+projectId:"project-be074433-8fce-4dc9-bd7",
+storageBucket:"project-be074433-8fce-4dc9-bd7.firebasestorage.app",
+messagingSenderId:"678442800678",
+appId:"1:678442800678:web:dc364fe500d9c3e37af8e7"
+};
+
+const app=initializeApp(firebaseConfig);
+const auth=getAuth(app);
+const db=getFirestore(app);
+const storage=getStorage(app);
+
+let currentUser=null;
+
+onAuthStateChanged(auth,user=>{
+if(!user){
+location.replace("index.html");
+return;
+}
+currentUser=user;
+});
+
+document.getElementById("loanForm").addEventListener("submit",async e=>{
+e.preventDefault();
+
+const btn=document.getElementById("submitBtn");
+const msg=document.getElementById("message");
+
+if(!currentUser){
+msg.style.color="red";
+msg.textContent="আগে Login করুন।";
+return;
+}
+
+const nid=document.getElementById("nidPhoto").files[0];
+const union=document.getElementById("unionPhoto").files[0];
+const nominee=document.getElementById("nomineeNid").files[0];
+
+if(!nid||!union||!nominee){
+msg.textContent="সব পরিচয়পত্রের ছবি নির্বাচন করুন।";
+return;
+}
+
+if(nid.size>5*1024*1024||union.size>5*1024*1024||nominee.size>5*1024*1024){
+msg.textContent="প্রতিটি ছবি ৫ MB-এর মধ্যে রাখুন।";
+return;
+}
+
+btn.disabled=true;
+btn.textContent="আবেদন জমা হচ্ছে...";
+msg.style.color="#0759d8";
+msg.textContent="তথ্য সংরক্ষণ করা হচ্ছে...";
+
+try{
+
+const uploadFile=async(file,path)=>{
+const fileRef=ref(storage,path);
+await uploadBytes(fileRef,file);
+return await getDownloadURL(fileRef);
+};
+
+const uid=currentUser.uid;
+const time=Date.now();
+
+const nidURL=await uploadFile(nid,"loanDocuments/"+uid+"/"+time+"_nid");
+const unionURL=await uploadFile(union,"loanDocuments/"+uid+"/"+time+"_union");
+const nomineeURL=await uploadFile(nominee,"loanDocuments/"+uid+"/"+time+"_nominee");
+
+await addDoc(collection(db,"loanApplications"),{
+userId:uid,
+userEmail:currentUser.email,
+fullName:document.getElementById("fullName").value,
+nidPhoto:nidURL,
+unionPhoto:unionURL,
+profession:document.getElementById("profession").value,
+nomineeNid:nomineeURL,
+nomineePhone:document.getElementById("nomineePhone").value,
+ownPhone:document.getElementById("ownPhone").value,
+address:document.getElementById("address").value,
+fatherName:document.getElementById("fatherName").value,
+motherName:document.getElementById("motherName").value,
+paymentMethod:document.getElementById("paymentMethod").value,
+accountNumber:document.getElementById("accountNumber").value,
+status:"pending",
+createdAt:serverTimestamp()
+});
+
+msg.style.color="green";
+msg.textContent="আপনার আবেদন সফলভাবে জমা হয়েছে!";
+
+document.getElementById("loanForm").reset();
+
+}catch(error){
+
+msg.style.color="red";
+msg.textContent="আবেদন জমা হয়নি: "+error.message;
+
+}finally{
+
+btn.disabled=false;
+btn.textContent="📨 আবেদন সাবমিট করুন";
+
+}
+
+});
+
+</script>
+
+</body>
+  </html>
+    
