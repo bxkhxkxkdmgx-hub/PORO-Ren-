@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -7,164 +8,71 @@
 
 <style>
 :root{
---n:#102a56;
---b:#2468df;
---o:#ff9b35;
---ink:#17243b;
---muted:#6d7890;
---line:#e5eaf2;
+--n:#102a56;--b:#2468df;--o:#ff9b35;
+--ink:#17243b;--muted:#6d7890;--line:#e5eaf2;
 }
 *{box-sizing:border-box}
-body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#f4f7fc;
-color:var(--ink);
-}
-button,input,select,textarea{font:inherit}
+body{margin:0;font-family:Arial,sans-serif;background:#f4f7fc;color:var(--ink)}
+button,input{font:inherit}
 button{cursor:pointer}
 .hidden{display:none!important}
 
 .topbar,.dash-head{
 background:linear-gradient(120deg,var(--n),var(--b));
-color:white;
-padding:16px 5%;
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:12px;
+color:white;padding:16px 5%;display:flex;
+align-items:center;justify-content:space-between;gap:12px;
 }
 .brand{font-size:25px;font-weight:bold}
 .brand span{color:#ffb45f}
-.btn{
-border:0;
-border-radius:11px;
-padding:12px 17px;
-font-weight:bold;
-}
+.btn{border:0;border-radius:11px;padding:12px 17px;font-weight:bold}
 .light{background:white;color:var(--n)}
 .orange{background:var(--o);color:#241500}
 .blue{background:var(--b);color:white}
 .outline{background:white;border:1px solid #cbd6e8;color:var(--n)}
 .full{width:100%;margin-top:15px}
 
-.hero{
-background:linear-gradient(120deg,#102a56,#286fe9);
-color:white;
-padding:48px 5%;
-}
-.hero-inner{
-max-width:1100px;
-margin:auto;
-display:grid;
-grid-template-columns:1.2fr .8fr;
-gap:25px;
-align-items:center;
-}
+.hero{background:linear-gradient(120deg,#102a56,#286fe9);color:white;padding:48px 5%}
+.hero-inner{max-width:1100px;margin:auto;display:grid;grid-template-columns:1.2fr .8fr;gap:25px;align-items:center}
 .hero h1{font-size:40px}
 .hero p{line-height:1.8;color:#dce7ff}
-.hero-card,.panel,.stat,.feature,.auth-card{
-background:white;
-color:var(--ink);
-border:1px solid var(--line);
-border-radius:17px;
-padding:20px;
-box-shadow:0 7px 22px #142d5010;
+.hero-card,.panel,.feature,.auth-card{
+background:white;color:var(--ink);border:1px solid var(--line);
+border-radius:17px;padding:20px;box-shadow:0 7px 22px #142d5010;
 }
 .hero-card strong{font-size:28px;color:var(--b)}
 .container{max-width:1100px;margin:25px auto;padding:0 16px}
 .features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .muted,.small{color:var(--muted);line-height:1.65}
-.muted{font-size:14px}
-.small{font-size:12px}
+.muted{font-size:14px}.small{font-size:12px}
 .auth-wrap{max-width:470px;margin:35px auto;padding:0 16px}
 .auth-card{padding:25px}
-.tabs{
-display:grid;
-grid-template-columns:1fr 1fr;
-background:#eef3fc;
-border-radius:12px;
-padding:5px;
-margin:18px 0;
-}
-.tab{
-border:0;
-padding:11px;
-border-radius:9px;
-background:transparent;
-color:var(--muted);
-}
+.tabs{display:grid;grid-template-columns:1fr 1fr;background:#eef3fc;border-radius:12px;padding:5px;margin:18px 0}
+.tab{border:0;padding:11px;border-radius:9px;background:transparent;color:var(--muted)}
 .tab.active{background:white;color:var(--b)}
 label{display:block;font-size:14px;font-weight:bold;margin:13px 0 7px}
-input,select,textarea{
-width:100%;
-padding:13px;
-border:1px solid #d9e1ee;
-border-radius:10px;
-background:white;
-}
-.notice{
-padding:13px 15px;
-border-radius:12px;
-background:#fff7e9;
-border:1px solid #ffe0ad;
-color:#79501b;
-font-size:13px;
-line-height:1.65;
-}
+input{width:100%;padding:13px;border:1px solid #d9e1ee;border-radius:10px;background:white}
 .dash-head{border-radius:0 0 24px 24px}
-.dash-head-inner{
-width:100%;
-max-width:1100px;
-margin:auto;
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:15px;
-}
-.dash-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:14px;
-margin:20px 0;
-}
-.stat strong{
-display:block;
-font-size:25px;
-margin-top:8px;
-color:var(--n);
-}
-.two-col{
-display:grid;
-grid-template-columns:1.1fr .9fr;
-gap:16px;
-}
-.history-item{
-padding:13px 0;
-border-bottom:1px solid var(--line);
-}
+.dash-content{max-width:900px;margin:25px auto;padding:0 16px}
 footer{text-align:center;padding:30px;color:var(--muted)}
+#authMessage{margin-top:12px;color:#c0392b}
 button:disabled{opacity:.55}
 
 @media(max-width:760px){
-.hero-inner,.two-col{grid-template-columns:1fr}
+.hero-inner{grid-template-columns:1fr}
 .features{grid-template-columns:1fr}
-.dash-grid{grid-template-columns:1fr 1fr}
 }
-@media(max-width:420px){
-.dash-grid{grid-template-columns:1fr}
-.brand{font-size:22px}
-}
+@media(max-width:420px){.brand{font-size:22px}}
 </style>
 </head>
+
 <body>
 
 <header class="topbar" id="publicHeader">
-<div class="brand">PORO <span>Ren</span></div>
-<div>
-<button class="btn light" onclick="showAuth('login')">লগইন</button>
-<button class="btn orange" onclick="showAuth('register')">রেজিস্ট্রেশন</button>
-</div>
+  <div class="brand">PORO <span>Ren</span></div>
+  <div>
+    <button class="btn light" onclick="showAuth('login')">লগইন</button>
+    <button class="btn orange" onclick="showAuth('register')">রেজিস্ট্রেশন</button>
+  </div>
 </header>
 
 <main id="homePage">
@@ -173,9 +81,7 @@ button:disabled{opacity:.55}
 <div>
 <h1>আপনার প্রয়োজনের পাশে<br>PORO Ren</h1>
 <p>অনলাইনে আবেদন ও আবেদনের অবস্থা দেখার প্ল্যাটফর্ম।</p>
-<button class="btn orange" onclick="showAuth('register')">
-এখনই অ্যাকাউন্ট খুলুন
-</button>
+<button class="btn orange" onclick="showAuth('register')">এখনই অ্যাকাউন্ট খুলুন</button>
 </div>
 <div class="hero-card">
 <p>ন্যূনতম ঋণের আবেদন</p>
@@ -192,7 +98,7 @@ button:disabled{opacity:.55}
 <section class="features">
 <div class="feature">
 <h3>📝 আবেদন</h3>
-<p class="muted">অনলাইনে আবেদন জমা দিন।</p>
+<p class="muted">অনলাইনে আবেদন জমা দেওয়ার সুবিধা।</p>
 </div>
 <div class="feature">
 <h3>📊 আবেদনের অবস্থা</h3>
@@ -200,26 +106,20 @@ button:disabled{opacity:.55}
 </div>
 <div class="feature">
 <h3>🔐 ড্যাশবোর্ড</h3>
-<p class="muted">নিজের প্রোফাইল ও আবেদন দেখুন।</p>
+<p class="muted">নিজের প্রোফাইল ও অ্যাকাউন্ট দেখুন।</p>
 </div>
 </section>
 
 <section class="panel" style="margin-top:18px">
 <h2>গুরুত্বপূর্ণ তথ্য</h2>
-<p class="muted">
-প্রকৃত ঋণ, জামানত বা পেমেন্ট চালুর আগে প্রযোজ্য
-আইনগত অনুমোদন, লিখিত শর্ত, গোপনীয়তা নীতি ও
-নিরাপত্তা নিশ্চিত করতে হবে।
-</p>
+<p class="muted">প্রকৃত ঋণ, জামানত বা পেমেন্ট চালুর আগে প্রযোজ্য আইনগত অনুমোদন, লিখিত শর্ত, গোপনীয়তা নীতি ও নিরাপত্তা নিশ্চিত করতে হবে।</p>
 </section>
 </div>
 </main>
 
 <section class="auth-wrap hidden" id="authPage">
 <div class="auth-card">
-<div class="brand" style="text-align:center;color:#102a56">
-PORO <span>Ren</span>
-</div>
+<div class="brand" style="text-align:center;color:#102a56">PORO <span>Ren</span></div>
 <h2 id="authTitle" style="text-align:center">লগইন করুন</h2>
 
 <div class="tabs">
@@ -232,7 +132,7 @@ PORO <span>Ren</span>
 <input id="loginEmail" type="email" required>
 <label>পাসওয়ার্ড</label>
 <input id="loginPass" type="password" required>
-<button class="btn blue full">লগইন করুন</button>
+<button class="btn blue full" id="loginBtn">লগইন করুন</button>
 </form>
 
 <form id="registerForm" class="hidden">
@@ -242,173 +142,58 @@ PORO <span>Ren</span>
 <input id="regEmail" type="email" required>
 <label>পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)</label>
 <input id="regPass" type="password" minlength="6" required>
-<button class="btn blue full">অ্যাকাউন্ট তৈরি করুন</button>
+<button class="btn blue full" id="registerBtn">অ্যাকাউন্ট তৈরি করুন</button>
 </form>
 
-<p class="small">Firebase Authentication দিয়ে নিরাপদ লগইন।</p>
+<p class="small">Firebase Authentication দিয়ে লগইন ও রেজিস্ট্রেশন।</p>
 <button class="btn outline full" onclick="backHome()">হোম পেজে ফিরে যান</button>
 <div id="authMessage" class="small"></div>
 </div>
 </section>
+
 <section id="dashboardPage" class="hidden">
-  <div class="dash-head">
-    <div class="dash-head-inner">
-      <div>
-        <div class="brand">PORO <span>Ren</span></div>
-        <div id="welcomeText">স্বাগতম</div>
-      </div>
-      <button class="btn light" id="logoutBtn">লগআউট</button>
-    </div>
-  </div>
+<header class="dash-head">
+<div class="dash-head-inner">
+<div class="brand">PORO <span>Ren</span></div>
+<button class="btn light" id="logoutBtn">লগআউট</button>
+</div>
+</header>
 
-  <div class="container">
-    <div class="dash-grid">
-      <div class="stat">
-        <small>ন্যূনতম আবেদন</small>
-        <strong>৳৩০,০০০</strong>
-      </div>
-      <div class="stat">
-        <small>প্রস্তাবিত জামানত</small>
-        <strong>৳৩,০০০</strong>
-      </div>
-      <div class="stat">
-        <small>আমার আবেদন</small>
-        <strong id="applicationCount">০</strong>
-      </div>
-    </div>
+<div class="dash-content">
+<div class="panel">
+<h2>স্বাগতম, <span id="welcomeName">ব্যবহারকারী</span>!</h2>
+<p class="muted">আপনার PORO Ren ড্যাশবোর্ডে স্বাগতম।</p>
+<hr>
+<p><b>আপনার নাম:</b> <span id="profileName"></span></p>
+<p><b>আপনার ইমেইল:</b> <span id="profileEmail"></span></p>
+</div>
 
-    <div class="two-col">
-      <div class="panel">
-        <h2>ঋণের আবেদন</h2>
-
-        <div class="notice">
-          নিরাপত্তা ও অনুমোদন নিশ্চিত না হওয়া পর্যন্ত আসল NID বা ব্যক্তিগত কাগজ আপলোড করবেন না।
-        </div>
-
-        <form id="loanForm">
-          <label>আবেদনের পরিমাণ (৳)</label>
-          <input id="loanAmount" type="number" min="30000"
-            step="1000" value="30000" required>
-
-          <label>পেশা</label>
-          <select id="occupation" required>
-            <option value="">পেশা নির্বাচন করুন</option>
-            <option>চাকরি</option>
-            <option>ব্যবসা</option>
-            <option>কৃষি</option>
-            <option>অন্যান্য</option>
-          </select>
-
-          <label>মাসিক আয় (৳)</label>
-          <input id="income" type="number" min="0" required>
-
-          <label>ঋণ নেওয়ার কারণ</label>
-          <textarea id="reason" rows="3" required
-            maxlength="1000"></textarea>
-
-          <h3>ডকুমেন্ট (ঐচ্ছিক)</h3>
-
-          <label>NID সামনের অংশ</label>
-          <input type="file" id="nidFront"
-            accept="image/jpeg,image/png,application/pdf">
-
-          <label>NID পেছনের অংশ</label>
-          <input type="file" id="nidBack"
-            accept="image/jpeg,image/png,application/pdf">
-
-          <label>আবেদনকারীর ছবি</label>
-          <input type="file" id="applicantPhoto"
-            accept="image/jpeg,image/png">
-
-          <label>ঠিকানার প্রমাণ</label>
-          <input type="file" id="addressProof"
-            accept="image/jpeg,image/png,application/pdf">
-
-          <div id="businessDocWrap" class="hidden">
-            <label>ট্রেড লাইসেন্স</label>
-            <input type="file" id="tradeLicense"
-              accept="image/jpeg,image/png,application/pdf">
-          </div>
-
-          <div id="incomeDocWrap">
-            <label>আয়ের প্রমাণ</label>
-            <input type="file" id="incomeProof"
-              accept="image/jpeg,image/png,application/pdf">
-          </div>
-
-          <h3>নমিনির তথ্য</h3>
-
-          <label>নমিনির সম্পূর্ণ নাম</label>
-          <input id="nomineeName" required maxlength="100">
-
-          <label>নমিনির মোবাইল নম্বর</label>
-          <input id="nomineePhone" type="tel"
-            required maxlength="20">
-
-          <button class="btn blue full" id="applyBtn">
-            আবেদন জমা দিন
-          </button>
-        </form>
-      </div>
-
-      <div class="panel">
-        <h2>আমার প্রোফাইল</h2>
-        <p><b>নাম:</b> <span id="profileName">—</span></p>
-        <p><b>ইমেইল:</b> <span id="profileEmail">—</span></p>
-
-        <hr>
-
-        <h2>আবেদনের ইতিহাস</h2>
-        <div id="historyList" class="muted">
-          এখনো কোনো আবেদন নেই।
-        </div>
-      </div>
-    </div>
-
-    <section class="panel" style="margin-top:18px">
-      <h2>পেমেন্ট</h2>
-      <div class="notice">
-        এই সংস্করণে পেমেন্ট বা TrxID যাচাই চালু নেই।
-        বৈধ মার্চেন্ট ব্যবস্থা ও প্রয়োজনীয় অনুমোদন ছাড়া টাকা পাঠাবেন না।
-      </div>
-    </section>
-  </div>
+<div class="panel" style="margin-top:18px">
+<h3>ঋণ আবেদন</h3>
+<p class="muted">এই ড্যাশবোর্ডটি বর্তমানে লগইন ও প্রোফাইল দেখানোর জন্য তৈরি। ঋণের আবেদন এবং পেমেন্ট সুবিধা এখনো চালু করা হয়নি।</p>
+</div>
+</div>
 </section>
 
 <footer>© 2026 PORO Ren</footer>
 
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+import { initializeApp } from
+"https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
 
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  onAuthStateChanged,
   signOut,
+  onAuthStateChanged,
   updateProfile
-} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+} from
+"https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 
-import {
-  getFirestore,
-  doc,
-  setDoc,
-  collection,
-  addDoc,
-  getDocs,
-  query,
-  where,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-
-import {
-  getStorage,
-  ref,
-  uploadBytes
-} from "https://www.gstatic.com/firebasejs/10.12.5/firebase-storage.js";
-
-  const firebaseConfig = {
-  apiKey: "AIzaSyAzlIrVn9FrsBDNNDoCvRCU1bHxSNtEzhY",
+// আপনার Firebase Configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAzlIrVn9FrsBDNNDoCvRCU1U1bHxSNtEzhY",
   authDomain: "project-be074433-8fce-4dc9-bd7.firebaseapp.com",
   projectId: "project-be074433-8fce-4dc9-bd7",
   storageBucket: "project-be074433-8fce-4dc9-bd7.firebasestorage.app",
@@ -419,333 +204,117 @@ import {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-  console.log("Firebase Project:", app.options.projectId);
-const db = getFirestore(app);
-const storage = getStorage(app);
 
 const $ = id => document.getElementById(id);
-let currentUser = null;
 
-function say(id, text) {
-  $(id).textContent = text;
-}
+window.showAuth = function(type){
+  $("homePage").classList.add("hidden");
+  $("authPage").classList.remove("hidden");
+  $("publicHeader").classList.remove("hidden");
 
-function showOnly(page) {
-  ['homePage', 'authPage', 'dashboardPage'].forEach(id => {
-    $(id).classList.add('hidden');
-  });
-
-  $('publicHeader').classList.toggle(
-    'hidden',
-    page === 'dashboardPage'
-  );
-
-  $(page).classList.remove('hidden');
-}
-
-window.showAuth = mode => {
-  showOnly('authPage');
-
-  say('authMessage', '');
-
-  const login = mode === 'login';
-
-  $('loginForm').classList.toggle('hidden', !login);
-  $('registerForm').classList.toggle('hidden', login);
-
-  $('loginTab').classList.toggle('active', login);
-  $('registerTab').classList.toggle('active', !login);
-
-  say(
-    'authTitle',
-    login ? 'অ্যাকাউন্টে লগইন করুন' : 'নতুন অ্যাকাউন্ট তৈরি করুন'
-  );
+  const isLogin = type === "login";
+  $("loginForm").classList.toggle("hidden", !isLogin);
+  $("registerForm").classList.toggle("hidden", isLogin);
+  $("loginTab").classList.toggle("active", isLogin);
+  $("registerTab").classList.toggle("active", !isLogin);
+  $("authTitle").textContent = isLogin ? "লগইন করুন" : "নতুন অ্যাকাউন্ট তৈরি করুন";
+  $("authMessage").textContent = "";
 };
 
-window.backHome = () => showOnly('homePage');
+window.backHome = function(){
+  $("authPage").classList.add("hidden");
+  $("homePage").classList.remove("hidden");
+  $("publicHeader").classList.remove("hidden");
+  $("authMessage").textContent = "";
+};
 
-function errText(error) {
-  const messages = {
-    'auth/email-already-in-use': 'এই ইমেইল দিয়ে আগে অ্যাকাউন্ট খোলা হয়েছে।',
-    'auth/invalid-email': 'সঠিক ইমেইল লিখুন।',
-    'auth/weak-password': 'কমপক্ষে ৬ অক্ষরের পাসওয়ার্ড দিন।',
-    'auth/invalid-credential': 'ইমেইল বা পাসওয়ার্ড সঠিক নয়।',
-    'auth/operation-not-allowed': 'Firebase Console-এ Email/Password চালু করুন।',
-    'permission-denied': 'Firestore Rules পরীক্ষা করুন।',
-    'storage/unauthorized': 'Storage Rules পরীক্ষা করুন।'
-  };
+function showDashboard(user){
+  $("publicHeader").classList.add("hidden");
+  $("homePage").classList.add("hidden");
+  $("authPage").classList.add("hidden");
+  $("dashboardPage").classList.remove("hidden");
 
-  return messages[error.code] || error.message || 'অজানা সমস্যা';
+  const name = user.displayName || "ব্যবহারকারী";
+  $("welcomeName").textContent = name;
+  $("profileName").textContent = name;
+  $("profileEmail").textContent = user.email || "";
 }
 
-// রেজিস্ট্রেশন
-$('registerForm').addEventListener('submit', async event => {
-  event.preventDefault();
-
-  const button = $('registerForm').querySelector('button');
-  button.disabled = true;
-
-  try {
-    const name = $('regName').value.trim();
-    const email = $('regEmail').value.trim().toLowerCase();
-
-    const result = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      $('regPass').value
-    );
-
-    await updateProfile(result.user, {
-      displayName: name
-    });
-
-    await setDoc(doc(db, 'users', result.user.uid), {
-      uid: result.user.uid,
-      name: name,
-      email: email,
-      createdAt: serverTimestamp()
-    });
-
-    $('registerForm').reset();
-
-  } catch (error) {
-    say('authMessage', errText(error));
-  } finally {
-    button.disabled = false;
-  }
-});
-
-// লগইন
-$('loginForm').addEventListener('submit', async event => {
-  event.preventDefault();
-
-  const button = $('loginForm').querySelector('button');
-  button.disabled = true;
-
-  try {
-    await signInWithEmailAndPassword(
-      auth,
-      $('loginEmail').value.trim().toLowerCase(),
-      $('loginPass').value
-    );
-
-  } catch (error) {
-    say('authMessage', errText(error));
-  } finally {
-    button.disabled = false;
-  }
-});
-
-// আবেদন তালিকা
-async function loadApps() {
-  try {
-    const result = await getDocs(
-      query(
-        collection(db, 'applications'),
-        where('uid', '==', currentUser.uid)
-      )
-    );
-
-    say(
-      'applicationCount',
-      result.size.toLocaleString('bn-BD')
-    );
-
-    $('historyList').innerHTML = '';
-
-    if (result.empty) {
-      say('historyList', 'এখনো কোনো আবেদন নেই।');
-      return;
-    }
-
-    result.forEach(item => {
-      const data = item.data();
-
-      const div = document.createElement('div');
-      div.className = 'history-item';
-
-      const title = document.createElement('b');
-      title.textContent =
-        'ঋণের আবেদন: ৳' +
-        Number(data.amount).toLocaleString('bn-BD');
-
-      const small = document.createElement('div');
-      small.className = 'small';
-      small.textContent =
-        'অবস্থা: ' +
-        (data.status === 'pending' ? 'পর্যালোচনাধীন' : 'আপডেট হয়নি') +
-        ' | পেশা: ' + data.occupation;
-
-      div.append(title, small);
-      $('historyList').append(div);
-    });
-
-  } catch (error) {
-    say('historyList', errText(error));
-  }
+function showMessage(message){
+  $("authMessage").textContent = message;
 }
 
-// ড্যাশবোর্ড
-function dashboard(user) {
-  currentUser = user;
+$("registerForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const btn = $("registerBtn");
+  btn.disabled = true;
+  showMessage("অ্যাকাউন্ট তৈরি হচ্ছে...");
 
-  showOnly('dashboardPage');
+  try{
+    const name = $("regName").value.trim();
+    const email = $("regEmail").value.trim();
+    const password = $("regPass").value;
 
-  say('welcomeText', 'স্বাগতম, ' + (user.displayName || user.email));
-  say('profileName', user.displayName || '—');
-  say('profileEmail', user.email || '—');
-
-  loadApps();
-}
-
-// পেশা অনুযায়ী ডকুমেন্ট
-$('occupation').addEventListener('change', () => {
-  const business = $('occupation').value === 'ব্যবসা';
-
-  $('businessDocWrap').classList.toggle('hidden', !business);
-  $('incomeDocWrap').classList.toggle('hidden', business);
-});
-
-// ফাইল আপলোড
-const allowedTypes = [
-  'image/jpeg',
-  'image/png',
-  'application/pdf'
-];
-
-async function uploadFiles(applicationId) {
-  const ids = [
-    'nidFront',
-    'nidBack',
-    'applicantPhoto',
-    'addressProof',
-    $('occupation').value === 'ব্যবসা'
-      ? 'tradeLicense'
-      : 'incomeProof'
-  ];
-
-  const uploaded = [];
-
-  for (const id of ids) {
-    const file = $(id).files[0];
-
-    if (!file) continue;
-
-    if (!allowedTypes.includes(file.type)) {
-      throw Error('শুধু JPG, PNG বা PDF ফাইল দিন।');
-    }
-
-    if (file.size > 5 * 1024 * 1024) {
-      throw Error('প্রতিটি ফাইল সর্বোচ্চ ৫ MB হতে পারবে।');
-    }
-
-    const safeName = file.name.replace(
-      /[^a-zA-Z0-9._-]/g,
-      '_'
-    );
-
-    const path =
-      `applicationDocs/${currentUser.uid}/${applicationId}/${id}_${safeName}`;
-
-    await uploadBytes(
-      ref(storage, path),
-      file,
-      { contentType: file.type }
-    );
-
-    uploaded.push({
-      field: id,
-      path: path,
-      name: safeName,
-      type: file.type,
-      size: file.size
-    });
-  }
-
-  return uploaded;
-}
-
-// ঋণের আবেদন জমা
-$('loanForm').addEventListener('submit', async event => {
-  event.preventDefault();
-
-  if (!currentUser) return;
-
-  const amount = Number($('loanAmount').value);
-
-  if (amount < 30000) {
-    alert('ন্যূনতম আবেদন ৳৩০,০০০।');
-    return;
-  }
-
-  const button = $('applyBtn');
-  button.disabled = true;
-  button.textContent = 'জমা হচ্ছে…';
-
-  try {
-    const applicationRef = await addDoc(
-      collection(db, 'applications'),
-      {
-        uid: currentUser.uid,
-        amount: amount,
-        occupation: $('occupation').value,
-        income: Number($('income').value),
-        reason: $('reason').value.trim(),
-        nomineeName: $('nomineeName').value.trim(),
-        nomineePhone: $('nomineePhone').value.trim(),
-        status: 'pending',
-        createdAt: serverTimestamp()
-      }
-    );
-
-    const files = await uploadFiles(applicationRef.id);
-
-    if (files.length) {
-      await setDoc(
-        doc(db, 'applications', applicationRef.id),
-        { documents: files },
-        { merge: true }
-      );
-    }
-
-    $('loanForm').reset();
-
-    alert(
-      files.length
-        ? 'আবেদন ও ফাইল আপলোড হয়েছে।'
-        : 'আবেদন জমা হয়েছে।'
-    );
-
-    await loadApps();
-
-  } catch (error) {
-    alert(
-      'সমস্যা: ' + errText(error) +
-      '। Storage ব্যবহারে Blaze প্ল্যান ও Storage Rules প্রয়োজন হতে পারে।'
-    );
-
-  } finally {
-    button.disabled = false;
-    button.textContent = 'আবেদন জমা দিন';
+    const result = await createUserWithEmailAndPassword(auth,email,password);
+    await updateProfile(result.user,{displayName:name});
+    showDashboard(result.user);
+  }catch(error){
+    showMessage(getErrorMessage(error.code));
+  }finally{
+    btn.disabled = false;
   }
 });
 
-// লগআউট
-$('logoutBtn').addEventListener('click', () => {
-  signOut(auth);
+$("loginForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const btn = $("loginBtn");
+  btn.disabled = true;
+  showMessage("লগইন হচ্ছে...");
+
+  try{
+    const email = $("loginEmail").value.trim();
+    const password = $("loginPass").value;
+    await signInWithEmailAndPassword(auth,email,password);
+  }catch(error){
+    showMessage(getErrorMessage(error.code));
+  }finally{
+    btn.disabled = false;
+  }
 });
 
-// লগইন অবস্থা পরীক্ষা
+$("logoutBtn").addEventListener("click", async () => {
+  try{
+    await signOut(auth);
+  }catch(error){
+    alert(getErrorMessage(error.code));
+  }
+});
+
 onAuthStateChanged(auth, user => {
-  if (user) {
-    dashboard(user);
-  } else {
-    currentUser = null;
-    showOnly('homePage');
+  if(user){
+    showDashboard(user);
+  }else{
+    $("dashboardPage").classList.add("hidden");
+    $("homePage").classList.remove("hidden");
+    $("publicHeader").classList.remove("hidden");
   }
 });
 
-showOnly('homePage');
+function getErrorMessage(code){
+  const errors = {
+    "auth/email-already-in-use":"এই ইমেইল দিয়ে আগে অ্যাকাউন্ট খোলা হয়েছে।",
+    "auth/invalid-email":"সঠিক ইমেইল লিখুন।",
+    "auth/weak-password":"কমপক্ষে ৬ অক্ষরের পাসওয়ার্ড দিন।",
+    "auth/user-not-found":"এই ইমেইলে কোনো অ্যাকাউন্ট পাওয়া যায়নি।",
+    "auth/wrong-password":"পাসওয়ার্ড সঠিক নয়।",
+    "auth/invalid-credential":"ইমেইল অথবা পাসওয়ার্ড সঠিক নয়।",
+    "auth/network-request-failed":"ইন্টারনেট সংযোগ পরীক্ষা করুন।",
+    "auth/operation-not-allowed":"Firebase Authentication-এ Email/Password চালু করুন।",
+    "auth/configuration-not-found":"Firebase Authentication-এর প্রজেক্ট ও কনফিগারেশন পরীক্ষা করুন।"
+  };
+  return errors[code] || "সমস্যা হয়েছে: " + code;
+}
 </script>
+
 </body>
 </html>
