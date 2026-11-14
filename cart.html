@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bedding House - Cart</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+ font-family:Arial,sans-serif;
+ background:#f3f7f3;
+ color:#173b27;
+ padding-bottom:80px
+}
+header{
+ background:#087b48;
+ color:white;
+ padding:18px;
+ text-align:center;
+ font-size:24px;
+ font-weight:bold
+}
+.container{
+ max-width:650px;
+ margin:auto;
+ padding:15px
+}
+.card{
+ background:white;
+ padding:15px;
+ border-radius:14px;
+ margin-bottom:15px;
+ box-shadow:0 2px 7px #ddd
+}
+h2{font-size:21px;margin-bottom:15px}
+.item{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px;
+ padding:12px 0;
+ border-bottom:1px solid #eee
+}
+.item-info{flex:1}
+.item h3{font-size:15px;margin-bottom:5px}
+.price{color:#087b48;font-weight:bold}
+.controls{
+ display:flex;
+ align-items:center;
+ gap:8px;
+ margin-top:8px
+}
+.controls button{
+ border:none;
+ background:#e8f5ed;
+ color:#087b48;
+ padding:7px 12px;
+ border-radius:6px;
+ font-size:16px
+}
+.remove{
+ background:#ffe5e5!important;
+ color:#d00!important
+}
+.summary{
+ display:flex;
+ justify-content:space-between;
+ margin:12px 0
+}
+.total{
+ font-size:22px;
+ color:#087b48;
+ font-weight:bold
+}
+.checkout{
+ display:block;
+ text-align:center;
+ background:#087b48;
+ color:white;
+ text-decoration:none;
+ padding:15px;
+ border-radius:10px;
+ font-weight:bold;
+ margin-top:15px
+}
+.back{
+ display:block;
+ text-align:center;
+ margin:15px;
+ color:#087b48;
+ text-decoration:none
+}
+.bottom{
+ position:fixed;
+ bottom:0;
+ left:0;
+ right:0;
+ background:#087b48;
+ display:flex;
+ justify-content:space-around;
+ padding:12px 5px
+}
+.bottom a{
+ color:white;
+ text-decoration:none;
+ text-align:center;
+ font-size:13px
+}
+.bottom span{
+ display:block;
+ font-size:21px
+}
+.empty{
+ text-align:center;
+ padding:30px 10px
+}
+</style>
+</head>
+
+<body>
+
+<header>🛏️ BEDDING HOUSE</header>
+
+<div class="container">
+
+<div class="card">
+<h2>🛒 আপনার শপিং কার্ট</h2>
+
+<div id="cartItems"></div>
+
+<div id="summary" style="display:none">
+
+<div class="summary">
+<span>পণ্যের মোট</span>
+<span id="subtotal">৳ ০</span>
+</div>
+
+<div class="summary">
+<span>ডেলিভারি চার্জ</span>
+<span id="delivery">৳ ৬০</span>
+</div>
+
+<div class="summary total">
+<span>সর্বমোট</span>
+<span id="total">৳ ০</span>
+</div>
+
+<a href="checkout.html" class="checkout">
+অর্ডার করতে এগিয়ে যান →
+</a>
+
+</div>
+
+</div>
+
+<a href="product.html" class="back">← আরও পণ্য কিনুন</a>
+
+</div>
+
+<div class="bottom">
+<a href="index.html"><span>🏠</span>হোম</a>
+<a href="product.html"><span>🛍️</span>পণ্য</a>
+<a href="cart.html"><span>🛒</span>কার্ট</a>
+<a href="login.html"><span>👤</span>আমার</a>
+</div>
+
+<script>
+let cart=JSON.parse(localStorage.getItem("beddingCart")||"[]");
+
+function saveCart(){
+ localStorage.setItem("beddingCart",JSON.stringify(cart));
+ renderCart();
+}
+
+function changeQty(index,change){
+ cart[index].qty=(cart[index].qty||1)+change;
+
+ if(cart[index].qty<=0){
+  cart.splice(index,1);
+ }
+
+ saveCart();
+}
+
+function removeItem(index){
+ cart.splice(index,1);
+ saveCart();
+}
+
+function renderCart(){
+
+let html="";
+let subtotal=0;
+
+if(cart.length===0){
+ document.getElementById("cartItems").innerHTML=`
+ <div class="empty">
+ <h3>🛒 আপনার কার্ট খালি</h3>
+ <p style="margin-top:10px">এখনও কোনো পণ্য যোগ করেননি</p>
+ <a href="product.html" class="checkout">পণ্য কিনুন</a>
+ </div>`;
+ document.getElementById("summary").style.display="none";
+ return;
+}
+
+cart.forEach((item,index)=>{
+
+let qty=item.qty||1;
+let amount=Number(item.price)*qty;
+subtotal+=amount;
+
+html+=`
+<div class="item">
+<div class="item-info">
+<h3>${item.name}</h3>
+<p class="price">৳ ${item.price}</p>
+
+<div class="controls">
+<button onclick="changeQty(${index},-1)">−</button>
+<span>${qty}</span>
+<button onclick="changeQty(${index},1)">+</button>
+<button class="remove" onclick="removeItem(${index})">🗑️</button>
+</div>
+
+</div>
+<strong>৳ ${amount}</strong>
+</div>
+`;
+});
+
+document.getElementById("cartItems").innerHTML=html;
+
+let delivery=60;
+let total=subtotal+delivery;
+
+document.getElementById("subtotal").innerText="৳ "+subtotal;
+document.getElementById("delivery").innerText="৳ "+delivery;
+document.getElementById("total").innerText="৳ "+total;
+
+document.getElementById("summary").style.display="block";
+}
+
+renderCart();
+</script>
+
+</body>
+</html>
