@@ -1,0 +1,328 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bedding House - Admin</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+ font-family:Arial,sans-serif;
+ background:#f3f7f3;
+ color:#173b27
+}
+header{
+ background:#075b37;
+ color:white;
+ padding:20px;
+ text-align:center;
+ font-size:23px;
+ font-weight:bold
+}
+.container{
+ max-width:1100px;
+ margin:auto;
+ padding:15px
+}
+h2{margin:20px 0 15px;font-size:21px}
+.stats{
+ display:grid;
+ grid-template-columns:repeat(2,1fr);
+ gap:12px
+}
+.stat{
+ background:white;
+ padding:20px;
+ border-radius:14px;
+ box-shadow:0 2px 6px #ddd
+}
+.stat h3{font-size:14px;color:#777}
+.stat p{
+ font-size:23px;
+ color:#087b48;
+ font-weight:bold;
+ margin-top:10px
+}
+.card{
+ background:white;
+ padding:18px;
+ border-radius:14px;
+ margin-bottom:15px;
+ box-shadow:0 2px 7px #ddd
+}
+label{
+ display:block;
+ margin:12px 0 6px;
+ font-weight:bold
+}
+input,textarea,select{
+ width:100%;
+ padding:12px;
+ border:1px solid #ddd;
+ border-radius:9px;
+ font-size:15px
+}
+textarea{height:80px}
+button{
+ cursor:pointer;
+ border:none;
+ padding:12px;
+ border-radius:8px;
+ font-weight:bold
+}
+.add-btn{
+ width:100%;
+ margin-top:15px;
+ background:#087b48;
+ color:white;
+ font-size:17px
+}
+.product{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:10px;
+ border-bottom:1px solid #eee;
+ padding:12px 0
+}
+.product img{
+ width:60px;
+ height:60px;
+ object-fit:cover;
+ border-radius:8px
+}
+.product-info{flex:1}
+.product-info h3{font-size:15px}
+.product-info p{
+ color:#087b48;
+ font-weight:bold;
+ margin-top:5px
+}
+.delete{
+ background:#ffe5e5;
+ color:#d00
+}
+.order{
+ padding:12px;
+ border-bottom:1px solid #eee;
+ line-height:1.8
+}
+.status{
+ background:#fff3cd;
+ padding:5px 10px;
+ border-radius:6px
+}
+.empty{
+ text-align:center;
+ padding:20px;
+ color:#777
+}
+.nav{
+ display:flex;
+ gap:10px;
+ margin-bottom:15px
+}
+.nav a{
+ flex:1;
+ text-align:center;
+ text-decoration:none;
+ background:#087b48;
+ color:white;
+ padding:12px;
+ border-radius:8px
+}
+@media(min-width:700px){
+ .stats{grid-template-columns:repeat(4,1fr)}
+}
+</style>
+</head>
+
+<body>
+
+<header>🛏️ BEDDING HOUSE ADMIN</header>
+
+<div class="container">
+
+<div class="nav">
+<a href="index.html">🏠 ওয়েবসাইট</a>
+<a href="admin.html">⚙️ অ্যাডমিন</a>
+</div>
+
+<h2>📊 ড্যাশবোর্ড</h2>
+
+<div class="stats">
+<div class="stat">
+<h3>মোট পণ্য</h3>
+<p id="totalProducts">0</p>
+</div>
+
+<div class="stat">
+<h3>মোট অর্ডার</h3>
+<p id="totalOrders">0</p>
+</div>
+
+<div class="stat">
+<h3>মোট বিক্রি</h3>
+<p id="totalSales">৳ 0</p>
+</div>
+
+<div class="stat">
+<h3>গ্রাহক</h3>
+<p id="totalCustomers">0</p>
+</div>
+</div>
+
+<h2>➕ নতুন পণ্য যোগ করুন</h2>
+
+<div class="card">
+<form id="productForm">
+
+<label>পণ্যের নাম</label>
+<input id="pname" required placeholder="পণ্যের নাম">
+
+<label>পণ্যের দাম</label>
+<input id="price" type="number" required min="1" placeholder="1250">
+
+<label>পণ্যের ছবি URL</label>
+<input id="image" placeholder="https://example.com/image.jpg">
+
+<label>ক্যাটাগরি</label>
+<select id="category">
+<option>বেডশিট</option>
+<option>বালিশ</option>
+<option>কম্বল</option>
+<option>বেড কভার</option>
+<option>হোম ডেকর</option>
+</select>
+
+<label>স্টক</label>
+<input id="stock" type="number" value="10" min="0">
+
+<label>বিবরণ</label>
+<textarea id="description" placeholder="পণ্যের বিবরণ"></textarea>
+
+<button class="add-btn" type="submit">➕ পণ্য যোগ করুন</button>
+
+</form>
+</div>
+
+<h2>🛍️ পণ্যের তালিকা</h2>
+
+<div class="card">
+<div id="productList"></div>
+</div>
+
+<h2>📦 অর্ডারের তালিকা</h2>
+
+<div class="card">
+<div id="orderList"></div>
+</div>
+
+</div>
+
+<script>
+
+let products=JSON.parse(localStorage.getItem("beddingProducts")||"[]");
+let orders=JSON.parse(localStorage.getItem("beddingOrders")||"[]");
+let users=JSON.parse(localStorage.getItem("beddingUsers")||"[]");
+
+function saveProducts(){
+ localStorage.setItem("beddingProducts",JSON.stringify(products));
+}
+
+function renderProducts(){
+
+let html="";
+
+products.forEach((p,i)=>{
+html+=`
+<div class="product">
+<img src="${p.image||'https://via.placeholder.com/60'}">
+<div class="product-info">
+<h3>${p.name}</h3>
+<p>৳ ${p.price} | স্টক: ${p.stock}</p>
+</div>
+<button class="delete" onclick="deleteProduct(${i})">🗑️</button>
+</div>
+`;
+});
+
+document.getElementById("productList").innerHTML=
+html||'<div class="empty">কোনো পণ্য নেই</div>';
+
+document.getElementById("totalProducts").innerText=products.length;
+}
+
+function deleteProduct(index){
+if(confirm("পণ্যটি ডিলিট করবেন?")){
+products.splice(index,1);
+saveProducts();
+renderProducts();
+}
+}
+
+document.getElementById("productForm")
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let product={
+id:Date.now(),
+name:document.getElementById("pname").value,
+price:Number(document.getElementById("price").value),
+image:document.getElementById("image").value,
+category:document.getElementById("category").value,
+stock:Number(document.getElementById("stock").value),
+description:document.getElementById("description").value
+};
+
+products.push(product);
+saveProducts();
+renderProducts();
+
+alert("পণ্য যোগ হয়েছে!");
+this.reset();
+
+});
+
+function renderOrders(){
+
+let html="";
+
+orders.forEach(o=>{
+html+=`
+<div class="order">
+<strong>অর্ডার: ${o.orderId||o.id}</strong><br>
+নাম: ${o.name}<br>
+মোবাইল: ${o.phone}<br>
+ঠিকানা: ${o.address}<br>
+পেমেন্ট: ${o.payment}<br>
+মোট: ৳ ${o.total}<br>
+তারিখ: ${o.date}<br>
+<span class="status">Pending</span>
+</div>
+`;
+});
+
+document.getElementById("orderList").innerHTML=
+html||'<div class="empty">কোনো অর্ডার নেই</div>';
+
+document.getElementById("totalOrders").innerText=orders.length;
+
+let sales=orders.reduce((sum,o)=>sum+Number(o.total||0),0);
+
+document.getElementById("totalSales").innerText="৳ "+sales;
+
+document.getElementById("totalCustomers").innerText=users.length;
+
+}
+
+renderProducts();
+renderOrders();
+
+</script>
+
+</body>
+</html>
