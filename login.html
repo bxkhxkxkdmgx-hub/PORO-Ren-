@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bedding House - Login</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+ font-family:Arial,sans-serif;
+ background:#f3f7f3;
+ color:#173b27;
+ min-height:100vh;
+ display:flex;
+ flex-direction:column
+}
+header{
+ background:#087b48;
+ color:white;
+ padding:20px;
+ text-align:center;
+ font-size:24px;
+ font-weight:bold
+}
+.container{
+ width:100%;
+ max-width:450px;
+ margin:auto;
+ padding:20px
+}
+.card{
+ background:white;
+ padding:25px;
+ border-radius:18px;
+ box-shadow:0 3px 12px #ddd
+}
+h2{
+ text-align:center;
+ margin-bottom:20px;
+ color:#087b48
+}
+label{
+ display:block;
+ margin:12px 0 7px;
+ font-weight:bold
+}
+input{
+ width:100%;
+ padding:13px;
+ border:1px solid #ddd;
+ border-radius:10px;
+ font-size:15px
+}
+button{
+ width:100%;
+ padding:14px;
+ margin-top:20px;
+ background:#087b48;
+ color:white;
+ border:none;
+ border-radius:10px;
+ font-size:17px;
+ font-weight:bold
+}
+.register{
+ text-align:center;
+ margin-top:18px
+}
+.register a{
+ color:#087b48;
+ font-weight:bold;
+ text-decoration:none
+}
+.back{
+ display:block;
+ text-align:center;
+ margin:20px;
+ color:#087b48;
+ text-decoration:none
+}
+</style>
+</head>
+
+<body>
+
+<header>🛏️ BEDDING HOUSE</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>👤 লগইন করুন</h2>
+
+<form id="loginForm">
+
+<label>মোবাইল নম্বর</label>
+<input type="tel" id="phone" required
+pattern="01[0-9]{9}" placeholder="01XXXXXXXXX">
+
+<label>পাসওয়ার্ড</label>
+<input type="password" id="password"
+required placeholder="আপনার পাসওয়ার্ড">
+
+<button type="submit">লগইন করুন</button>
+
+</form>
+
+<div class="register">
+নতুন ব্যবহারকারী?
+<a href="register.html">রেজিস্ট্রেশন করুন</a>
+</div>
+
+</div>
+
+<a href="index.html" class="back">← হোম পেজে ফিরে যান</a>
+
+</div>
+
+<script>
+document.getElementById("loginForm")
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let phone=document.getElementById("phone").value;
+let password=document.getElementById("password").value;
+
+let users=JSON.parse(
+ localStorage.getItem("beddingUsers")||"[]"
+);
+
+let user=users.find(u=>
+ u.phone===phone && u.password===password
+);
+
+if(user){
+
+localStorage.setItem("beddingLoggedIn",JSON.stringify({
+ name:user.name,
+ phone:user.phone
+}));
+
+alert("লগইন সফল হয়েছে!");
+
+window.location.href="index.html";
+
+}else{
+
+alert("মোবাইল নম্বর অথবা পাসওয়ার্ড ভুল!");
+
+}
+
+});
+</script>
+
+</body>
+</html>
