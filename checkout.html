@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bedding House - Checkout</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+ font-family:Arial,sans-serif;
+ background:#f3f7f3;
+ color:#173b27;
+ padding-bottom:30px
+}
+header{
+ background:#087b48;
+ color:white;
+ padding:18px;
+ text-align:center;
+ font-size:23px;
+ font-weight:bold
+}
+.container{
+ max-width:600px;
+ margin:15px auto;
+ padding:15px
+}
+.card{
+ background:white;
+ padding:18px;
+ border-radius:15px;
+ box-shadow:0 2px 8px #ddd;
+ margin-bottom:15px
+}
+h2{font-size:19px;margin-bottom:15px}
+label{
+ display:block;
+ margin:12px 0 6px;
+ font-weight:bold
+}
+input,textarea,select{
+ width:100%;
+ padding:12px;
+ border:1px solid #ddd;
+ border-radius:9px;
+ font-size:15px
+}
+textarea{height:90px}
+.payment{
+ background:#f5faf5;
+ padding:12px;
+ border-radius:10px;
+ margin-top:10px
+}
+.payment label{
+ font-weight:normal;
+ margin:8px 0
+}
+.payment input{width:auto}
+.item{
+ display:flex;
+ justify-content:space-between;
+ padding:10px 0;
+ border-bottom:1px solid #eee
+}
+.total{
+ display:flex;
+ justify-content:space-between;
+ font-size:20px;
+ font-weight:bold;
+ margin-top:15px;
+ color:#087b48
+}
+.submit{
+ width:100%;
+ padding:15px;
+ border:none;
+ border-radius:10px;
+ background:#087b48;
+ color:white;
+ font-size:18px;
+ font-weight:bold;
+ margin-top:15px
+}
+.back{
+ display:block;
+ text-align:center;
+ margin:15px;
+ color:#087b48
+}
+</style>
+</head>
+
+<body>
+
+<header>🛏️ BEDDING HOUSE</header>
+
+<div class="container">
+
+<div class="card">
+<h2>📦 অর্ডারের পণ্য</h2>
+<div id="cartItems"></div>
+<div class="total">
+<span>সর্বমোট:</span>
+<span id="total">৳ ০</span>
+</div>
+</div>
+
+<div class="card">
+<h2>👤 ডেলিভারি তথ্য</h2>
+
+<form id="checkoutForm">
+
+<label>আপনার নাম</label>
+<input type="text" id="name" required placeholder="সম্পূর্ণ নাম">
+
+<label>মোবাইল নম্বর</label>
+<input type="tel" id="phone" required pattern="[0-9]{11}" placeholder="01XXXXXXXXX">
+
+<label>সম্পূর্ণ ঠিকানা</label>
+<textarea id="address" required placeholder="বাড়ি, গ্রাম, উপজেলা, জেলা"></textarea>
+
+<label>পেমেন্ট পদ্ধতি</label>
+
+<div class="payment">
+<label><input type="radio" name="payment" value="Cash on Delivery" checked> ক্যাশ অন ডেলিভারি</label>
+<label><input type="radio" name="payment" value="bKash"> বিকাশ</label>
+<label><input type="radio" name="payment" value="Nagad"> নগদ</label>
+</div>
+
+<div id="mobilePayment" style="display:none">
+<label>বিকাশ / নগদ নম্বর</label>
+<input type="tel" id="paymentNumber" placeholder="পেমেন্ট নম্বর">
+</div>
+
+<button type="submit" class="submit">✅ অর্ডার নিশ্চিত করুন</button>
+
+</form>
+</div>
+
+<a class="back" href="product.html">← পণ্য পেজে ফিরে যান</a>
+
+</div>
+
+<script>
+let cart=JSON.parse(localStorage.getItem("beddingCart")||"[]");
+
+function renderCart(){
+ let html="";
+ let total=0;
+
+ cart.forEach(item=>{
+  total+=Number(item.price);
+  html+=`
+  <div class="item">
+   <span>${item.name}</span>
+   <span>৳ ${item.price}</span>
+  </div>`;
+ });
+
+ document.getElementById("cartItems").innerHTML=
+ html||"আপনার কার্ট খালি";
+
+ document.getElementById("total").innerText="৳ "+total;
+}
+
+document.querySelectorAll('input[name="payment"]').forEach(r=>{
+ r.addEventListener("change",()=>{
+  let value=document.querySelector('input[name="payment"]:checked').value;
+  document.getElementById("mobilePayment").style.display=
+  value==="Cash on Delivery"?"none":"block";
+ });
+});
+
+document.getElementById("checkoutForm").addEventListener("submit",function(e){
+ e.preventDefault();
+
+ if(cart.length===0){
+  alert("আপনার কার্ট খালি!");
+  return;
+ }
+
+ let payment=document.querySelector('input[name="payment"]:checked').value;
+
+ let order={
+  id:Date.now(),
+  name:document.getElementById("name").value,
+  phone:document.getElementById("phone").value,
+  address:document.getElementById("address").value,
+  payment:payment,
+  paymentNumber:document.getElementById("paymentNumber").value,
+  items:cart,
+  total:cart.reduce((sum,item)=>sum+Number(item.price),0),
+  date:new Date().toLocaleString()
+ };
+
+ let orders=JSON.parse(localStorage.getItem("beddingOrders")||"[]");
+ orders.push(order);
+ localStorage.setItem("beddingOrders",JSON.stringify(orders));
+
+ alert("অর্ডার গ্রহণ করা হয়েছে! অর্ডার নম্বর: "+order.id);
+
+ localStorage.removeItem("beddingCart");
+ window.location.href="index.html";
+});
+
+renderCart();
+</script>
+
+</body>
+</html>
