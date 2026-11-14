@@ -1,0 +1,176 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bedding House - Register</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+ font-family:Arial,sans-serif;
+ background:#f3f7f3;
+ color:#173b27;
+ min-height:100vh;
+ display:flex;
+ flex-direction:column
+}
+header{
+ background:#087b48;
+ color:white;
+ padding:20px;
+ text-align:center;
+ font-size:24px;
+ font-weight:bold
+}
+.container{
+ width:100%;
+ max-width:450px;
+ margin:auto;
+ padding:20px
+}
+.card{
+ background:white;
+ padding:25px;
+ border-radius:18px;
+ box-shadow:0 3px 12px #ddd
+}
+h2{
+ text-align:center;
+ margin-bottom:20px;
+ color:#087b48
+}
+label{
+ display:block;
+ margin:12px 0 7px;
+ font-weight:bold
+}
+input{
+ width:100%;
+ padding:13px;
+ border:1px solid #ddd;
+ border-radius:10px;
+ font-size:15px
+}
+input:focus{
+ outline:2px solid #087b48;
+ border-color:#087b48
+}
+button{
+ width:100%;
+ padding:14px;
+ margin-top:20px;
+ background:#087b48;
+ color:white;
+ border:none;
+ border-radius:10px;
+ font-size:17px;
+ font-weight:bold
+}
+.login{
+ text-align:center;
+ margin-top:18px
+}
+.login a{
+ color:#087b48;
+ font-weight:bold;
+ text-decoration:none
+}
+.back{
+ display:block;
+ text-align:center;
+ margin:20px;
+ color:#087b48;
+ text-decoration:none
+}
+</style>
+</head>
+
+<body>
+
+<header>🛏️ BEDDING HOUSE</header>
+
+<div class="container">
+
+<div class="card">
+
+<h2>👤 নতুন অ্যাকাউন্ট তৈরি</h2>
+
+<form id="registerForm">
+
+<label>আপনার নাম</label>
+<input type="text" id="name" required placeholder="সম্পূর্ণ নাম">
+
+<label>মোবাইল নম্বর</label>
+<input type="tel" id="phone" required
+pattern="01[0-9]{9}" placeholder="01XXXXXXXXX">
+
+<label>ইমেইল (ঐচ্ছিক)</label>
+<input type="email" id="email" placeholder="example@gmail.com">
+
+<label>পাসওয়ার্ড</label>
+<input type="password" id="password"
+required minlength="8" placeholder="কমপক্ষে ৮ অক্ষর">
+
+<label>পাসওয়ার্ড নিশ্চিত করুন</label>
+<input type="password" id="confirmPassword"
+required placeholder="আবার পাসওয়ার্ড দিন">
+
+<button type="submit">রেজিস্ট্রেশন করুন</button>
+
+</form>
+
+<div class="login">
+আগে অ্যাকাউন্ট আছে?
+<a href="login.html">লগইন করুন</a>
+</div>
+
+</div>
+
+<a href="index.html" class="back">← হোম পেজে ফিরে যান</a>
+
+</div>
+
+<script>
+document.getElementById("registerForm")
+.addEventListener("submit",function(e){
+
+e.preventDefault();
+
+let name=document.getElementById("name").value;
+let phone=document.getElementById("phone").value;
+let email=document.getElementById("email").value;
+let password=document.getElementById("password").value;
+let confirmPassword=document.getElementById("confirmPassword").value;
+
+if(password!==confirmPassword){
+ alert("দুইটি পাসওয়ার্ড মিলছে না!");
+ return;
+}
+
+let users=JSON.parse(localStorage.getItem("beddingUsers")||"[]");
+
+if(users.some(u=>u.phone===phone)){
+ alert("এই মোবাইল নম্বর দিয়ে আগে অ্যাকাউন্ট করা হয়েছে!");
+ return;
+}
+
+users.push({
+ name:name,
+ phone:phone,
+ email:email,
+ password:password
+});
+
+localStorage.setItem("beddingUsers",JSON.stringify(users));
+
+alert("রেজিস্ট্রেশন সফল হয়েছে!");
+
+window.location.href="login.html";
+
+});
+</script>
+
+</body>
+</html>
